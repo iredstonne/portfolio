@@ -26,7 +26,7 @@ jobs:
         uses: withastro/action@v6.1.2
         with:
           node-version: 24
-          package-manager: "pnpm"
+          package-manager: pnpm@11.13.1
   deploy:
       name: Deploy GitHub Pages
       needs: build
