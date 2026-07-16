@@ -6,8 +6,23 @@ export type Props = HTMLAttributes<"a"> & {
     variant?: "primary" | "secondary" | "ghost"
 }
 
+type AnchorHref = HTMLAttributes<"a">["href"]
+
+const getExternalAnchorHrefProps = (href: AnchorHref) => {
+    if (!href) {
+        return {}
+    }
+    const url = new URL(href, Astro.url)
+    const isExternal = url.origin !== Astro.url.origin
+    return isExternal ? { 
+        target: "_blank", 
+        rel: "noopener noreferrer" 
+    } : {};
+}
+
 const {
     variant,
+    href,
     class: className,
     ...props
 } = Astro.props
@@ -19,6 +34,7 @@ const {
         className,
     ]}
     {...props}
+    {...getExternalAnchorHrefProps(href)}
 >
     <slot />
 </a>
