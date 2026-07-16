@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import classes from "./Prose.module.scss"
+
+type Props = HTMLAttributes<"div">
+
+const {
+    class: className,
+    ...props
+} = Astro.props
+---
+
+<div
+    class:list={[
+        classes.Prose,
+        className,
+    ]}
+    {...props}
+>
+    <slot />
+</div>

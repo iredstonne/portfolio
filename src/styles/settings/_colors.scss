@@ -1,0 +1,66 @@
+@use "sass:map";
+@use "sass:math";
+
+$tones: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950;
+
+$palettes: (
+  primary: (
+    hue: 260deg,
+    chroma: 0.18
+  ),
+  neutral: (
+    hue: 255deg,
+    chroma: 0.025
+  ),
+  accent: (
+    hue: 210deg,
+    chroma: 0.19
+  )
+);
+
+$tones-darkness: (
+  50: 5,
+  100: 10,
+  200: 20,
+  300: 30,
+  400: 40,
+  500: 50,
+  600: 60,
+  700: 70,
+  800: 80,
+  900: 90,
+  950: 95
+);
+
+$tones-chroma: (
+  50: 10,
+  100: 20,
+  200: 40,
+  300: 60,
+  400: 80,
+  500: 100,
+  600: 80,
+  700: 60,
+  800: 40,
+  900: 20,
+  950: 10
+);
+
+@mixin emit-tokens {
+    @each $name, $palette in $palettes {
+        $hue: map.get($palette, 'hue');
+        $maximum-chroma: map.get($palette, 'chroma');
+        @each $tone in $tones {
+            $darkness: map.get($tones-darkness, $tone);
+            $lightness: (100 - $darkness) * 1%;
+            $chroma-factor: map.get($tones-chroma, $tone);
+            $chroma: $maximum-chroma * math.div($chroma-factor, 100);
+            --#{$name}-#{$tone}: oklch(
+                #{$lightness}
+                #{$chroma} 
+                #{$hue}
+            );
+        }
+    }
+}
+

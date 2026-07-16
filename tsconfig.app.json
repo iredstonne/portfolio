@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "moduleDetection": "force",
+        "esModuleInterop": true,
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "isolatedModules": true,
+        "allowImportingTsExtensions": true,
+        "noUncheckedSideEffectImports": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noEmit": true,
+        "noEmitOnError": true,
+        "forceConsistentCasingInFileNames": true,
+    },
+    "include": [
+        ".astro/types.d.ts",
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.astro"
+    ]
+}

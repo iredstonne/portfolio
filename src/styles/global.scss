@@ -1,0 +1,12 @@
+@use "./baseline";
+@use "./settings/colors";
+@use "./settings/scale";
+@use "./settings/spaces";
+@use "./settings/fonts";
+
+:root {
+  @include colors.emit-tokens;
+  @include scale.emit-tokens;
+  @include spaces.emit-tokens;
+  @include fonts.emit-tokens;
+}

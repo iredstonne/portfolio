@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import classes from "./LinkButton.module.scss"
+
+export type Props = HTMLAttributes<"a"> & {
+    variant?: "primary" | "secondary" | "ghost"
+}
+
+const {
+    variant,
+    class: className,
+    ...props
+} = Astro.props
+---
+<a
+    class:list={[
+        classes.LinkButton,
+        variant && classes[`LinkButton--${variant}`],
+        className,
+    ]}
+    {...props}
+>
+    <slot />
+</a>

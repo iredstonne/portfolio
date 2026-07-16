@@ -1,0 +1,17 @@
+@use "./scale";
+
+$space-unit: 4;
+$space-max: 16;
+
+@function space($step) {
+    @if $step == 0 {
+        @return 0;
+    }
+    @return scale.scaled($space-unit * $step);
+}
+
+@mixin emit-tokens {
+    @for $step from 0 through $space-max {
+        --space-#{$step}: #{space($step)}; 
+    }
+}

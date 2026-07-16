@@ -1,0 +1,12 @@
+$scale-base: 16;
+
+@function scaled($scale-pixels) {
+  @if $scale-pixels == 0 {
+    @return 0;
+  }
+  @return calc(var(--scale-unit) * #{$scale-pixels});
+}
+
+@mixin emit-tokens {
+  --scale-unit: calc(1rem / #{$scale-base});
+}

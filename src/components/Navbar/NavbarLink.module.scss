@@ -1,0 +1,15 @@
+.NavbarLink {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: var(--space-1);
+  transition: text-decoration-color 180ms;
+
+  &:is(:hover, :focus-visible) {
+    text-decoration-color: currentColor;
+  }
+}

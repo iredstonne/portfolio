@@ -1,0 +1,49 @@
+---
+import {
+    icon
+} from "@fortawesome/fontawesome-svg-core"
+import NavbarLinks from "./NavbarLinks.astro"
+import LinkButton from "../LinkButton/LinkButton.astro"
+import classes from "./Navbar.module.scss"
+import { availableSocialIconset, SocialIconName, navbarSocialLinks } from "../../config/navbar-social-links"
+import { navbarActions } from "../../config/navbar-actions"
+
+const renderSocialIcon = (name: SocialIconName) =>
+    icon(availableSocialIconset[name], {
+        attributes: {
+            focusable: "false",
+            "aria-hidden": "true",
+        }
+    }).html.join("")
+---
+
+<nav class={classes.Navbar}>
+    <div class={classes.Navbar__brand}>Kristofer Gehringer</div>
+    <div class={classes.Navbar__links}>
+        <NavbarLinks />
+    </div>
+    <div class={classes.Navbar__actions}>
+        {navbarSocialLinks.map((navbarSocialLink) => {
+            return (
+                <LinkButton
+                    href={navbarSocialLink.href}
+                    variant="ghost"
+                    title={navbarSocialLink.title}
+                    aria-label={navbarSocialLink.ariaLabel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Fragment set:html={renderSocialIcon(navbarSocialLink.icon)} />
+                </LinkButton>
+            )
+        })}
+        {navbarActions.map((navbarAction) => {
+            return (
+                <LinkButton 
+                    href={navbarAction.href} 
+                    variant={navbarAction.variant}
+                >{navbarAction.label}</LinkButton>
+            )
+        })}
+    </div>
+</nav>
