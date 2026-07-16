@@ -1,10 +1,10 @@
-export type IntroductionHeroActionConfig = {
+export type HeroActionConfig = {
   href: string
   label: string
   variant: "primary" | "secondary"
 }
 
-export const introductionHeroActions = [
+export const heroActions = [
   {
     href: "mailto:kristofer.gehringer@gmail.com",
     variant: "primary",
@@ -15,4 +15,4 @@ export const introductionHeroActions = [
     variant: "secondary",
     label: "Voir mes projets",
   },
-] as IntroductionHeroActionConfig[]
+] as HeroActionConfig[]

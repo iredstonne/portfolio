@@ -1,0 +1,20 @@
+---
+import Prose from "../Prose/Prose.astro"
+import LinkButton from "../LinkButton/LinkButton.astro"
+import classes from "./Hero.module.scss"
+import { Content as HeroContent } from "../../config/contents/hero-content.mdx"
+import { heroActions } from "../../config/hero-actions"
+---
+<section class={classes.Hero}>
+    <Prose class={classes.Hero__content}>
+        <HeroContent />
+    </Prose>
+    <div class={classes.Hero__actions}>
+        {heroActions.map((heroAction) => (
+            <LinkButton 
+                variant={heroAction.variant}
+                href={heroAction.href}
+            >{heroAction.label}</LinkButton>
+        ))}
+    </div>
+</section>
