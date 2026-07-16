@@ -1,10 +1,9 @@
 ---
-import {
-    icon
-} from "@fortawesome/fontawesome-svg-core"
+import { icon } from "@fortawesome/fontawesome-svg-core"
 import NavbarLinks from "./NavbarLinks.astro"
 import LinkButton from "../LinkButton/LinkButton.astro"
 import classes from "./Navbar.module.scss"
+import { site } from "../../config/site"
 import { availableSocialIconset, SocialIconName, navbarSocialLinks } from "../../config/navbar-social-links"
 import { navbarActions } from "../../config/navbar-actions"
 
@@ -18,7 +17,7 @@ const renderSocialIcon = (name: SocialIconName) =>
 ---
 
 <nav class={classes.Navbar}>
-    <div class={classes.Navbar__brand}>Kristofer Gehringer</div>
+    <a href={site.homeUrl} class={classes.Navbar__brand}>{site.name}</a>
     <div class={classes.Navbar__links}>
         <NavbarLinks />
     </div>
@@ -26,12 +25,10 @@ const renderSocialIcon = (name: SocialIconName) =>
         {navbarSocialLinks.map((navbarSocialLink) => {
             return (
                 <LinkButton
-                    href={navbarSocialLink.href}
                     variant="ghost"
+                    href={navbarSocialLink.href}
                     title={navbarSocialLink.title}
                     aria-label={navbarSocialLink.ariaLabel}
-                    target="_blank"
-                    rel="noopener noreferrer"
                 >
                     <Fragment set:html={renderSocialIcon(navbarSocialLink.icon)} />
                 </LinkButton>
