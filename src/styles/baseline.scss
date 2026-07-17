@@ -1,4 +1,4 @@
-// Baseline Decembre 2023
+// Minimal Baseline based on features: December 2023
 $html-elements-to-reset:
     a,
     abbr,
@@ -78,109 +78,107 @@ $html-elements-to-reset:
     ul,
     var;
 
-@layer baseline {
-    body,
-    body :where(#{$html-elements-to-reset}),
-    body :where(#{$html-elements-to-reset})::before,
-    body :where(#{$html-elements-to-reset})::after {
-        all: unset;
-    }
-    
-    body,
-    body *,
-    body *::before,
-    body *::after {
-        box-sizing: border-box;
-        min-inline-size: 0;
-    }
+body,
+body :where(#{$html-elements-to-reset}),
+body :where(#{$html-elements-to-reset})::before,
+body :where(#{$html-elements-to-reset})::after {
+    all: unset;
+}
 
-    html, body {
-        display: block;
-    }
+body,
+body *,
+body *::before,
+body *::after {
+    box-sizing: border-box;
+    min-inline-size: 0;
+}
 
-    html {
-        min-block-size: 100%;
-        text-size-adjust: 100%;
-        scroll-behavior: smooth;
-    }
+html, body {
+    display: block;
+}
 
-    body {
-        min-block-size: 100vh;
-        min-block-size: 100dvh;
-        font-family: ui-sans-serif, system-ui, sans-serif;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        overscroll-behavior: contain;
-    }
+html {
+    min-block-size: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
 
-    @view-transition {
-       navigation: auto;
-    }
+body {
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: contain;
+}
 
-    :where(:focus-visible) {
-        outline-width: var(--focus-ring-width, 2px);
-        outline-offset: var(--focus-ring-offset, 2px);
-        outline-style: solid;
-        outline-color: var(--focus-ring-color, currentColor)
-    }
+@view-transition {
+    navigation: auto;
+}
 
-    input[type="search" i] {
-        appearance: textfield;
-    }
+:where(:focus-visible) {
+    outline-width: var(--focus-ring-width, 2px);
+    outline-offset: var(--focus-ring-offset, 2px);
+    outline-style: solid;
+    outline-color: var(--focus-ring-color, currentColor)
+}
 
-    input[type="search" i]::-webkit-search-cancel-button {
-        appearance: none;
-    }
+input[type="search" i] {
+    appearance: textfield;
+}
 
+input[type="search" i]::-webkit-search-cancel-button {
+    appearance: none;
+}
+
+textarea {
+    --textarea-min-rows: 2;
+    --textarea-max-rows: 10;
+    min-block-size: calc(max(1, var(--textarea-min-rows)) * 1lh);
+    max-block-size: calc(max(1, var(--textarea-min-rows), var(--textarea-max-rows)) * 1lh);
+    overflow-y: scroll;
+}
+
+@supports (scrollbar-gutter: stable) {
     textarea {
-        --textarea-min-rows: 2;
-        --textarea-max-rows: 10;
-        min-block-size: calc(max(1, var(--textarea-min-rows)) * 1lh);
-        max-block-size: calc(max(1, var(--textarea-min-rows), var(--textarea-max-rows)) * 1lh);
-        overflow-y: scroll;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+    }
+}
+
+:where(textarea) {
+    tab-size: 4; 
+    resize: vertical;
+}
+
+@supports (field-sizing: content) {
+    textarea[autogrow] {
+        field-sizing: content;
+        resize: none;  
+    }
+}
+
+option, 
+optgroup {
+    display: block;
+    white-space: nowrap;
+}
+
+[hidden] {
+    display: none!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
-    @supports (scrollbar-gutter: stable) {
-        textarea {
-            overflow-y: auto;
-            scrollbar-gutter: stable;
-        }
-    }
-
-    :where(textarea) {
-        tab-size: 4; 
-        resize: vertical;
-    }
-
-    @supports (field-sizing: content) {
-        textarea[autogrow] {
-            field-sizing: content;
-            resize: none;  
-        }
-    }
-
-    option, 
-    optgroup {
-        display: block;
-        white-space: nowrap;
-    }
-
-    [hidden] {
-        display: none!important;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        html {
-            scroll-behavior: auto;
-        }
-
-        body, 
-        body *, 
-        body *::before, 
-        body *::after {
-            transition-duration: 0.01ms!important;
-            animation-duration: 0.01ms!important;
-            animation-iteration-count: 1!important;
-        }
+    body, 
+    body *, 
+    body *::before, 
+    body *::after {
+        transition-duration: 0.01ms!important;
+        animation-duration: 0.01ms!important;
+        animation-iteration-count: 1!important;
     }
 }
