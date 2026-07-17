@@ -8,8 +8,29 @@ $breakpoints: (
     "2xl": 96rem
 );
 
-@mixin from($breakpoint) {
-    @media (width >= map.get($breakpoints, $breakpoint)) {
-        @content;
+@function get($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Unknown breakpoint: "#{$name}".';
+  }
+
+  @return map.get($breakpoints, $name);
+}
+
+@mixin from($name, $container: null) {
+    $min-width: get($name);
+    @if $container {
+        @container #{$container} (inline-size >= #{$min-width}) {
+            @content;
+        }
+    } @else {
+        @media (width >= #{$min-width}) {
+           @content;
+        }
+    }
+}
+
+@mixin print {
+    @media print {
+        @content
     }
 }
