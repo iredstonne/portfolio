@@ -6,36 +6,32 @@ import classes from "./NavbarLinks.module.scss"
 const normalizePathname = (pathname: string) =>
   pathname.replace(/\/+$/, "") || "/"
 
-const currentPathname = normalizePathname(Astro.url.pathname)
-
 const pointsToCurrentPage = (url: URL) =>
   url.origin === Astro.url.origin &&
-  normalizePathname(url.pathname) === currentPathname
+  normalizePathname(url.pathname) === normalizePathname(Astro.url.pathname)
 
 const resolvedNavbarLinks = navbarLinks.map((navbarLink) => {
-  const resolvedUrl = new URL(navbarLink.href, Astro.url)
   return {
     ...navbarLink,
-    resolvedUrl,
-    pointsToCurrentPage: pointsToCurrentPage(resolvedUrl)
+    resolvedUrl: new URL(navbarLink.href, Astro.url)
   }
 })
 
 const navbarActiveLinkStyles = resolvedNavbarLinks
-  .filter(({ pointsToCurrentPage }) => pointsToCurrentPage)
+  .filter(({ resolvedUrl }) => pointsToCurrentPage(resolvedUrl))
   .map(({ href, resolvedUrl }) => {
     const navbarLinkSelector = `.${classes.NavbarLinks} a[href="${href}"]`
-    if (resolvedUrl.hash === "") {
+    const hash = resolvedUrl.hash
+    if (hash === "") {
       return `
         ${navbarLinkSelector} {
           text-decoration-color: currentColor;
         }
       `
     }
-    const targetId = decodeURIComponent(resolvedUrl.hash.slice(1))
+    const targetId = decodeURIComponent(hash.slice(1))
     return `
-      body:has([id="${targetId}"]:target)
-      ${navbarLinkSelector} {
+      body:has([id="${targetId}"]:target) ${navbarLinkSelector} {
         text-decoration-color: currentColor;
       }
     `
