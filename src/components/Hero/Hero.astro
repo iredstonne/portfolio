@@ -2,12 +2,13 @@
 import Prose from "../Prose/Prose.astro"
 import LinkButton from "../LinkButton/LinkButton.astro"
 import classes from "./Hero.module.scss"
-import { Content as HeroContent } from "../../config/contents/hero-content.mdx"
+import { heroContent } from "../../config/hero-content"
 import { heroActions } from "../../config/hero-actions"
 ---
 <section class={classes.Hero}>
     <Prose class={classes.Hero__content}>
-        <HeroContent />
+        <h1>{heroContent.title}</h1>
+        <p>{heroContent.description}</p>
     </Prose>
     <div class={classes.Hero__actions}>
         {heroActions.map((heroAction) => (
