@@ -2,13 +2,16 @@
 import Prose from "../Prose/Prose.astro"
 import LinkButton from "../LinkButton/LinkButton.astro"
 import classes from "./Hero.module.scss"
+import { site } from "../../config/site"
 import { heroContent } from "../../config/hero-content"
 import { heroActions } from "../../config/hero-actions"
+
 ---
 <section class={classes.Hero}>
     <Prose class={classes.Hero__content}>
         <h1>{heroContent.title}</h1>
         <p>{heroContent.description}</p>
+        {site.ownerEmail && <span class="print-only">Prendre contact à l'adresse de courriel suivante <strong>{site.ownerEmail}</strong> pour toutes demandes ou questions.</span>}
     </Prose>
     <div class={classes.Hero__actions}>
         {heroActions.map((heroAction) => (

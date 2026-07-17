@@ -1,4 +1,6 @@
 // Minimal Baseline based on features: December 2023
+@use "./settings/breakpoints" as breakpoint;
+
 $html-elements-to-reset:
     a,
     abbr,
@@ -116,6 +118,16 @@ body {
 
 @view-transition {
     navigation: auto;
+}
+
+.print-only {
+    display: none !important;
+}
+
+@include breakpoint.print {
+    .print-only {
+        display: revert !important;
+    }
 }
 
 :where(:focus-visible) {
