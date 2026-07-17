@@ -27,8 +27,8 @@ const renderSocialIcon = (name: SocialIconName) =>
                 <LinkButton
                     variant="ghost"
                     href={navbarSocialLink.href}
-                    title={navbarSocialLink.title}
-                    aria-label={navbarSocialLink.ariaLabel}
+                    title={navbarSocialLink.tooltip}
+                    aria-label={navbarSocialLink.tooltip}
                 >
                     <Fragment set:html={renderSocialIcon(navbarSocialLink.icon)} />
                 </LinkButton>
