@@ -1,16 +1,18 @@
 ---
 import Navbar from "../components/Navbar/Navbar.astro"
+import { site } from "../config/site";
+import baselineCss from "../styles/baseline.scss?inline"
 import "../styles/global.scss";
 
 type Props = {
-  title?: string
+  pageName?: string
 }
 
-const { title } = Astro.props;
+const { pageName } = Astro.props;
 
-const siteName = "Portfolio de Kristofer Gehringer"
-const documentTitle = title
-  ? `${title} • ${siteName}`
+const siteName = site.name
+const documentTitle = pageName
+  ? `${pageName} • ${siteName}`
   : siteName
 ---
 
@@ -20,6 +22,7 @@ const documentTitle = title
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{documentTitle}</title>
+    <style is:inline set:html={baselineCss} />
   </head>
   <body>
     <header>
