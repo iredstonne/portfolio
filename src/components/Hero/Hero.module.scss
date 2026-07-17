@@ -37,4 +37,10 @@
             }
         }
     }
+
+    @include breakpoint.print {
+        &__actions {
+            display: none;
+        }
+    }
 }
