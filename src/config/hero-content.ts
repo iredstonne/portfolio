@@ -5,5 +5,5 @@ export type HeroContentConfig = {
 
 export const heroContent = {
     title: "Des solutions numériques pour de vrais besoins",
-    description: "Développeur autodidacte basé à Bruxelles, je conçois des solutions fonctionnelles, fiables et évolutives.",
+    description: "Je suis développeur belgo-autrichien de 21 ans autodidacte depuis 2017 avec une aspiration entrepreneuriale. Je crée et accompagne des projets à taille maîtrisée, de la compréhension du besoin jusqu’à une solution fonctionnelle, fiable et évolutive."
 } as HeroContentConfig
