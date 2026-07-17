@@ -18,6 +18,7 @@ export type SocialIconName = keyof typeof availableSocialIconset
 export type NavbarSocialLinkConfig = {
   icon: SocialIconName
   href: string
+  handle: string
   tooltip: string
 }
 
@@ -25,11 +26,13 @@ export const navbarSocialLinks = [
   {
     icon: "github",
     href: "https://github.com/iredstonne",
-    tooltip: "Me suivre sur GitHub"
+    handle: "@iredstonne",
+    tooltip: "GitHub"
   },
   {
     icon: "linkedin",
     href: "https://www.linkedin.com/in",
-    tooltip: "Se connecter avec moi sur LinkedIn"
+    handle: "Kristofer Gehringer",
+    tooltip: "LinkedIn"
   },
 ] satisfies NavbarSocialLinkConfig[]

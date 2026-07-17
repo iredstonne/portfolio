@@ -1,5 +1,10 @@
 .NavbarLink {
   display: block;
+  font-size: clamp(
+    var(--font-size-6),
+    10vw,
+    var(--font-size-8)
+  );
   color: inherit;
   cursor: pointer;
   text-decoration-line: underline;

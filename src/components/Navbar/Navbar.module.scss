@@ -1,26 +1,31 @@
 @use "../../styles/settings/breakpoints" as breakpoint;
 
 .Navbar {
-  position: sticky;
-  display: grid;
-  grid-template-areas: 
-    "brand"
-    "links"
-    "actions";
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  align-items: center;
-  gap: var(--space-3);
-  inline-size: 100%;
-  max-inline-size: 100%;
-  margin-inline: auto;
-  padding: var(--space-4);
+  position: relative;
+
+  &__layout {
+    display: grid;
+    grid-template-areas: 
+      "brand"
+      "links"
+      "actions";
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+    padding-inline: var(--space-3);
+  }
 
   &__brand {
     grid-area: brand;
-    font-size: var(--font-size-12);
+    font-size: clamp(
+      var(--font-size-6),
+      10vw,
+      var(--font-size-12)
+    );
     font-weight: var(--font-weight-7);
-    white-space: nowrap;
+    text-align: center;
   }
 
   &__links {
@@ -36,12 +41,27 @@
     gap: var(--space-2);
   }
 
-  @include breakpoint.from("lg") {
-    grid-template-areas: "brand links actions";
-    grid-template-columns: auto minmax(0, 1fr) auto;
+  @include breakpoint.print {
+    position: static;
 
     &__links {
-      justify-self: center;
+      display: none;
+    }
+
+    &__actions {
+      [data-handle] {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+
+        &::after {
+          content: attr(data-handle);
+        }
+      }
+
+      > :not([data-handle]) {
+        display: none;
+      }
     }
   }
 }

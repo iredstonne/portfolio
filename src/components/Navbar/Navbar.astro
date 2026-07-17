@@ -17,30 +17,33 @@ const renderSocialIcon = (name: SocialIconName) =>
 ---
 
 <nav class={classes.Navbar}>
-    <a href={site.homeUrl} class={classes.Navbar__brand}>{site.name}</a>
-    <div class={classes.Navbar__links}>
-        <NavbarLinks />
-    </div>
-    <div class={classes.Navbar__actions}>
-        {navbarSocialLinks.map((navbarSocialLink) => {
-            return (
-                <LinkButton
-                    variant="ghost"
-                    href={navbarSocialLink.href}
-                    title={navbarSocialLink.tooltip}
-                    aria-label={navbarSocialLink.tooltip}
-                >
-                    <Fragment set:html={renderSocialIcon(navbarSocialLink.icon)} />
-                </LinkButton>
-            )
-        })}
-        {navbarActions.map((navbarAction) => {
-            return (
-                <LinkButton 
-                    href={navbarAction.href} 
-                    variant={navbarAction.variant}
-                >{navbarAction.label}</LinkButton>
-            )
-        })}
+    <div class={classes.Navbar__layout}>
+        <a href={site.homeUrl} class={classes.Navbar__brand}>{site.name}</a>
+        <div class={classes.Navbar__links}>
+            <NavbarLinks />
+        </div>
+        <div class={classes.Navbar__actions}>
+            {navbarSocialLinks.map((navbarSocialLink) => {
+                return (
+                    <LinkButton
+                        variant="ghost"
+                        href={navbarSocialLink.href}
+                        title={navbarSocialLink.tooltip}
+                        data-handle={navbarSocialLink.handle}
+                        aria-label={navbarSocialLink.tooltip}
+                    >
+                        <Fragment set:html={renderSocialIcon(navbarSocialLink.icon)} />
+                    </LinkButton>
+                )
+            })}
+            {navbarActions.map((navbarAction) => {
+                return (
+                    <LinkButton 
+                        href={navbarAction.href} 
+                        variant={navbarAction.variant}
+                    >{navbarAction.label}</LinkButton>
+                )
+            })}
+        </div>
     </div>
 </nav>
