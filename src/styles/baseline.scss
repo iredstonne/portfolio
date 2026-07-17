@@ -91,6 +91,7 @@ body *::before,
 body *::after {
     box-sizing: border-box;
     min-inline-size: 0;
+    max-inline-size: 100%;
 }
 
 html, body {
@@ -104,6 +105,7 @@ html {
 }
 
 body {
+    color-scheme: light;
     min-block-size: 100vh;
     min-block-size: 100dvh;
     font-family: ui-sans-serif, system-ui, sans-serif;
