@@ -61,4 +61,10 @@ $weight-max: 7;
   );
 
   --font-size-h6: var(--font-size-10);
+
+  --font-size-p: clamp(
+    var(--font-size-8),
+    1rem + 0.25vw,
+    var(--font-size-9)
+  );
 }

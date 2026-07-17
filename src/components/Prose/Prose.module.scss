@@ -50,11 +50,11 @@
     
     p {
         display: block;
+        font-size: var(--font-size-p);
         text-wrap: pretty;
     }
 
     b, strong {
         font-weight: var(--font-weight-5);
     }
-
 }
