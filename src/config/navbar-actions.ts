@@ -1,3 +1,5 @@
+import { site } from "./site"
+
 export type NavbarActionConfig = {
   href: string
   label: string
@@ -6,7 +8,7 @@ export type NavbarActionConfig = {
 
 export const navbarActions = [
   {
-    href: "mailto:kristofer.gehringer@gmail.com",
+    href: `mailto:${site.ownerEmail}`,
     variant: "primary",
     label: "Contact",
   }

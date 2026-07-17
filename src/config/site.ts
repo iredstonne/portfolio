@@ -1,9 +1,11 @@
 export type SiteConfig = {
     name: string,
-    homeUrl: string
+    homeUrl: string,
+    ownerEmail: string
 }
 
 export const site = {
     name: "Portfolio de Kristofer Gehringer",
-    homeUrl: "/portfolio"
+    homeUrl: "/portfolio",
+    ownerEmail: "kristofer.gehringer@gmail.com"
 } as SiteConfig
