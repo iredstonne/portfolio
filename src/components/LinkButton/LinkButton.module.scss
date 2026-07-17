@@ -1,46 +1,85 @@
 .LinkButton {
+    --LinkButton-color: inherit;
+    --LinkButton-background: transparent;
+    --LinkButton-background-hover: transparent;
+    --LinkButton-border-color: transparent;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
     padding-inline: var(--space-4);
     padding-block: var(--space-1);
-    border: 1px solid transparent;
+    border: 1px solid var(--LinkButton-border-color);
     border-radius: 0.5rem;
+    background-color: var(--LinkButton-background);
+    color: var(--LinkButton-color);
+    font-size: clamp(
+        var(--font-size-6),
+        10vw,
+        var(--font-size-8)
+    );
     font-weight: 600;
+    text-align: center;
     cursor: pointer;
+    overflow: hidden;
 
     & > svg {
-        inline-size: 1.5rem; 
-        block-size: 1.5rem;
+        flex: 0 0 auto;
+        inline-size: clamp(
+            0.75rem,
+            10vw,
+            1.5rem
+        );
+        block-size: clamp(
+            0.75rem,
+            10vw,
+            1.5rem
+        );
     }
 
     &--primary {
-        color: var(--neutral-50);
-        background-color: var(--neutral-600);
-        
-        &:hover {
-            background-color: var(--neutral-700);
-        }
+        --LinkButton-color: light-dark(
+            var(--neutral-50),
+            var(--neutral-950)
+        );
+        --LinkButton-background: light-dark(
+            var(--neutral-600),
+            var(--neutral-200)
+        );
+        --LinkButton-background-hover: light-dark(
+            var(--neutral-700),
+            var(--neutral-300)
+        );
     }
 
     &--secondary {
-        color: var(--neutral-900);
-        background-color: var(--neutral-50);
-        border-color: var(--neutral-200);
-        
-        &:hover {
-           background-color: var(--neutral-100);
-        }
+        --LinkButton-color: light-dark(
+            var(--neutral-900),
+            var(--neutral-50)
+        );
+        --LinkButton-background: light-dark(
+            var(--neutral-50),
+            var(--neutral-900)
+        );
+        --LinkButton-background-hover: light-dark(
+            var(--neutral-100),
+            var(--neutral-800)
+        );
+        --LinkButton-border-color: light-dark(
+            var(--neutral-200),
+            var(--neutral-700)
+        );
     }
 
     &--ghost {
-        color: var(--neutral-900);
-        background-color: transparent;
-
-        &:hover {
-           background-color: var(--neutral-50);
-        }
+        --LinkButton-color: light-dark(
+            var(--neutral-900),
+            var(--neutral-50)
+        );
+        --LinkButton-background-hover: light-dark(
+            var(--neutral-50),
+            var(--neutral-900)
+        );
     }
 }
 
