@@ -1,11 +1,13 @@
-@use "./settings/colors";
-@use "./settings/scale";
-@use "./settings/spaces";
-@use "./settings/fonts";
+@use "./tokens/colors";
+@use "./tokens/scale";
+@use "./tokens/spaces";
+@use "./tokens/radius";
+@use "./tokens/fonts";
 
 :root {
   @include colors.emit-tokens;
   @include scale.emit-tokens;
-  @include spaces.emit-tokens;
   @include fonts.emit-tokens;
+  @include spaces.emit-tokens;
+  @include radius.emit-tokens;
 }

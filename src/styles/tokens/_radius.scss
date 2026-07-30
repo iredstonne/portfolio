@@ -1,0 +1,18 @@
+@use "./scale";
+
+$radius-unit: 4;
+$radius-max: 4;
+
+@function radius($step) {
+  @if $step == 0 {
+    @return 0;
+  }
+
+  @return scale.scaled($radius-unit * $step);
+}
+
+@mixin emit-tokens {
+  @for $step from 0 through $radius-max {
+    --radius-#{$step}: #{radius($step)};
+  }
+}

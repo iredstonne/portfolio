@@ -29,6 +29,12 @@ $breakpoints: (
     }
 }
 
+@mixin fluid-container($max-width) {
+    width: 100%;
+    max-width: get($max-width);
+    margin-inline: auto;
+}
+
 @mixin print {
     @media print {
         @content
