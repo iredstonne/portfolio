@@ -1,0 +1,24 @@
+---
+import ShowcaseCard from "../ShowcaseCard/ShowcaseCard.astro"
+import ShowcaseGrid from "../ShowcaseGrid/ShowcaseGrid.astro"
+import { projects, getProjectUrl } from "../../config/projects"
+
+const featuredProjects = projects
+  .filter((project) => project.featured)
+const isTruncated = featuredProjects.length < projects.length
+
+---
+
+<ShowcaseGrid isTruncated={isTruncated}>
+    {featuredProjects.map((project) => (
+      <ShowcaseCard
+        href={getProjectUrl(project)}
+        cover={project.cover}
+        title={project.title}
+        summary={project.summary}
+        tagsLabel="Technologies utilisés"
+        tags={project.technologies}
+        actionLabel="Voir le projet"
+      />
+    ))}
+</ShowcaseGrid>

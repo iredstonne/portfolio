@@ -1,0 +1,22 @@
+---
+import ShowcaseCard from "../ShowcaseCard/ShowcaseCard.astro"
+import ShowcaseGrid from "../ShowcaseGrid/ShowcaseGrid.astro"
+import { experiences, getExperienceUrl } from "../../config/experiences"
+
+const featuredExperiences = experiences
+  .filter((experience) => experience.featured)
+const isTruncated = featuredExperiences.length < experiences.length
+
+---
+
+<ShowcaseGrid isTruncated={isTruncated}>
+    {featuredExperiences.map((experience) => (
+      <ShowcaseCard
+        href={getExperienceUrl(experience)}
+        cover={experience.cover}
+        title={experience.title}
+        summary={experience.summary}
+        actionLabel="Voir l'expérience"
+      />
+    ))}
+</ShowcaseGrid>
