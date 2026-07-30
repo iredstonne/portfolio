@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import ShowcaseCard from "../../components/ShowcaseCard/ShowcaseCard.astro"
+import ShowcaseGrid from "../../components/ShowcaseGrid/ShowcaseGrid.astro"
+import Section from "../../components/Section/Section.astro"
+import { projects, getProjectUrl } from "../../config/projects"
+
+---
+
+<BaseLayout pageName="Projets">
+    <Section 
+        targetId="projects"
+        title="Projets"
+    >
+        <ShowcaseGrid>
+            {projects.map((project) => (
+            <ShowcaseCard
+                href={getProjectUrl(project)}
+                cover={project.cover}
+                title={project.title}
+                summary={project.summary}
+                tagsLabel="Technologies utilisés"
+                tags={project.technologies}
+                actionLabel="Voir le projet"
+            />
+            ))}
+        </ShowcaseGrid>
+    </Section>
+</BaseLayout>

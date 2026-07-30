@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import ShowcaseCard from "../../components/ShowcaseCard/ShowcaseCard.astro"
+import ShowcaseGrid from "../../components/ShowcaseGrid/ShowcaseGrid.astro"
+import Section from "../../components/Section/Section.astro"
+import { experiences, getExperienceUrl } from "../../config/experiences"
+
+---
+
+<BaseLayout pageName="Expériences">
+    <Section 
+        targetId="experiences"
+        title="Expériences"
+    >
+        <ShowcaseGrid>
+            {experiences.map((project) => (
+                <ShowcaseCard
+                    href={getExperienceUrl(project)}
+                    cover={project.cover}
+                    title={project.title}
+                    summary={project.summary}
+                    actionLabel="Voir l'expérience"
+                />
+            ))}
+        </ShowcaseGrid>
+    </Section>
+</BaseLayout>
