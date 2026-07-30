@@ -1,19 +1,17 @@
-export type NavbarLinkConfig = {
-  href: string
-  label: string
-}
+import { site } from "./site"
+import { NavbarLinkConfig } from "../types/navbar-link"
 
 export const navbarLinks = [
   {
-    href: "/portfolio",
+    href: `${site.base}`,
     label: "Acceuil",
   },
   {
-    href: "/portfolio/projects",
+    href: `${site.base}/projects`,
     label: "Projets",
   },
   {
-    href: "/portfolio/experiences",
+    href: `${site.base}/experiences`,
     label: "Expériences",
   }
-] satisfies NavbarLinkConfig[]
+] as NavbarLinkConfig[]

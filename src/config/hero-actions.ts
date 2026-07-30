@@ -1,18 +1,10 @@
-export type HeroActionConfig = {
-  href: string
-  label: string
-  variant: "primary" | "secondary"
-}
+import { site } from "./site"
+import { HeroActionConfig } from "../types/hero-actions"
 
 export const heroActions = [
   {
-    href: "mailto:kristofer.gehringer@gmail.com",
+    href: `mailto:${site.ownerEmail}`,
     variant: "primary",
     label: "Prise de contact",
-  },
-  {
-    href: "/portfolio/projects",
-    variant: "secondary",
-    label: "Voir mes projets",
-  },
+  }
 ] as HeroActionConfig[]

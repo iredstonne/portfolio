@@ -1,3 +1,4 @@
+import { site } from "./site"
 import {
     faGithub,
     faLinkedin,
@@ -25,14 +26,14 @@ export type NavbarSocialLinkConfig = {
 export const navbarSocialLinks = [
   {
     icon: "github",
-    href: "https://github.com/iredstonne",
-    handle: "@iredstonne",
+    href: site.githubUrl,
+    handle: site.githubHandle,
     tooltip: "GitHub"
   },
   {
     icon: "linkedin",
-    href: "https://www.linkedin.com/in",
-    handle: "Kristofer Gehringer",
+    href: site.linkedinUrl,
+    handle: site.linkedinHandle,
     tooltip: "LinkedIn"
   },
-] satisfies NavbarSocialLinkConfig[]
+] as NavbarSocialLinkConfig[]

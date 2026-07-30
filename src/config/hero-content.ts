@@ -1,7 +1,4 @@
-export type HeroContentConfig = {
-  title: string
-  description: string
-}
+import { HeroContentConfig } from "../types/hero-content"
 
 export const heroContent = {
     title: "Des solutions numériques pour de vrais besoins",

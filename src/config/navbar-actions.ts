@@ -1,10 +1,5 @@
 import { site } from "./site"
-
-export type NavbarActionConfig = {
-  href: string
-  label: string
-  variant: "primary" | "secondary"
-}
+import { NavbarActionConfig } from "../types/navbar-actions"
 
 export const navbarActions = [
   {
