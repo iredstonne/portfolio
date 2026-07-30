@@ -1,5 +1,5 @@
 // Minimal Baseline based on features: December 2023
-@use "./settings/breakpoints" as breakpoint;
+@use "./utilities/breakpoints" as breakpoint;
 
 $html-elements-to-reset:
     a,
@@ -80,6 +80,13 @@ $html-elements-to-reset:
     ul,
     var;
 
+:focus-visible {
+    outline-width: var(--focus-ring-width, 2px);
+    outline-offset: var(--focus-ring-offset, 2px);
+    outline-style: solid;
+    outline-color: var(--focus-ring-color, currentColor)
+}
+
 body,
 body :where(#{$html-elements-to-reset}),
 body :where(#{$html-elements-to-reset})::before,
@@ -114,10 +121,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior: contain;
-}
-
-@view-transition {
-    navigation: auto;
+    overflow-y: scroll;
 }
 
 .print-only {
@@ -128,13 +132,6 @@ body {
     .print-only {
         display: revert !important;
     }
-}
-
-:where(:focus-visible) {
-    outline-width: var(--focus-ring-width, 2px);
-    outline-offset: var(--focus-ring-offset, 2px);
-    outline-style: solid;
-    outline-color: var(--focus-ring-color, currentColor)
 }
 
 input[type="search" i] {
