@@ -1,20 +1,48 @@
 ---
-import { HTMLAttributes } from 'astro/types'
+import type { HTMLAttributes } from "astro/types"
+import classes from "./Section.module.scss"
+import { arrowRightIcon, renderIconDefinitionToHTML } from "../../assets/icons"
+
+type SectionAction = {
+    label: string
+    href: string
+}
 
 type Props = HTMLAttributes<"section"> & {
     targetId: string
+    title: string
+    summary?: string
+    action?: SectionAction
 }
 
 const {
     targetId,
-    class: className,
+    title,
+    summary,
+    action,
     ...props
 } = Astro.props
+
 ---
 
-<section 
-    id={targetId} 
+<section
     {...props}
+    id={targetId}
+    class={classes.Section}
 >
+    <header class={classes.Section__header}>
+        <h2 class={classes.Section__title}>{title}</h2>
+        {summary && <p class={classes.Section__description}>{summary}</p>}
+    </header>
     <slot />
+    {action && (
+        <footer class={classes.Section__footer}>
+            <a href={action.href} class={classes.Section__link}>
+                {action.label}
+                <span class={classes.Section__icon}>
+                    <Fragment set:html={renderIconDefinitionToHTML(arrowRightIcon)} />
+                </span>
+            </a>
+        </footer>
+    )}
 </section>

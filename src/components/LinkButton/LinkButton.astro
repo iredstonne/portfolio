@@ -16,21 +16,21 @@ const {
     class: className,
     ...props
 } = Astro.props
+
 ---
+
 <a
     class:list={[
         classes.LinkButton,
         variant && classes[`LinkButton--${variant}`],
-        className,
+        className
     ]}
     {...props}
     href={href}
-    {...isExternalHref(href) 
-    ? { 
+    {...isExternalHref(href) ? { 
         target: "_blank", 
         rel: "noopener noreferrer" 
-    } 
-    : {}}
+    } : {}}
 >
     <slot />
 </a>

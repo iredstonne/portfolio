@@ -1,3 +1,90 @@
+@use "../../styles/utilities/breakpoints";
+
 .Section {
+    --Section-gap: var(--space-6);
+    --Section-padding-x: var(--space-8);
+    --Section-padding-y: var(--space-8);
+    --Section-header-gap: var(--space-2);
+    --Section-title-color: var(--primary-500);
+    --Section-title-font-size: var(--font-size-h3);
+    --Section-title-font-weight: var(--font-weight-7);
+    --Section-title-line-height: 1.6;
+    --Section-description-color: var(--neutral-700);
+    --Section-description-font-size: var(--font-size-p);
+    --Section-footer-margin-y: var(--space-4);
+    --Section-link-gap: var(--space-2);
+    --Section-link-color: var(--primary-700);
+    --Section-link-color-hover: var(--primary-800);
+    --Section-link-font-size: var(--font-size-10);
+    --Section-link-font-weight: var(--font-weight-6);
+    --Section-link-icon-nudge-x: var(--space-1);
+    --Section-link-icon-size: 1.5rem;
+
+    display: grid;
+    gap: var(--Section-gap);
+    @include breakpoints.fluid-container("xl");
+    padding-inline: var(--Section-padding-x);
+    padding-block: var(--Section-padding-y);
+
+    &__header {
+        display: grid;
+        gap: var(--Section-header-gap);
+    }
+
+    &__title {
+        color: var(--Section-title-color);
+        font-size: var(--Section-title-font-size);
+        font-weight: var(--Section-title-font-weight);
+        line-height: var(--Section-title-line-height);
+        text-wrap: balance;
+        overflow-wrap: break-word;
+    }
+
+    &__description {
+        color: var(--Section-description-color);
+        font-size: var(--Section-description-font-size);
+        line-height: var(--Section-description-line-height);
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+    }
+
+    &__footer {
+        margin-block: var(--Section-footer-margin-y);
+    }
+
+    @keyframes Section-icon-nudge {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(var(--Section-icon-nudge-x));
+        }
+    }
     
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--Section-link-gap);
+        color: var(--Section-link-color);
+        font-size: var(--Section-link-font-size);
+        font-weight: var(--Section-link-font-weight);
+        cursor: pointer;
+
+        &__icon {
+            inline-size: var(--Section-link-icon-size);
+            block-size: var(--Section-link-icon-size);
+        }
+
+        &:hover, &:focus-visible {
+            text-decoration: underline;
+            color: var(--Section-link-color-hover);
+
+            &__icon {
+                animation: Section-icon-nudge 500ms ease-in-out;
+            }
+        }
+
+    }
 }

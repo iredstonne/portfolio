@@ -1,40 +1,33 @@
-@use "../../styles/settings/breakpoints" as breakpoint;
+@use "../../styles/utilities/breakpoints" as breakpoint;
 
 .Hero {
+    --Hero-gap: var(--space-4);
+    --Hero-padding-x: var(--space-4);
+    --Hero-padding-y: var(--space-8);
+    --Hero-actions-gap: var(--space-2);
+
     display: grid;
-    align-content: center;
-    justify-items: center;
-    gap: var(--space-4);
-    padding-block: var(--space-8);
-    padding-inline: var(--space-4);
+    gap: var(--Hero-gap);
+    padding-inline: var(--Hero-padding-x);
+    padding-block: var(--Hero-padding-y);
 
     &__content {
-        inline-size: 100%;
+        justify-items: center;
         text-align: center;
     }
 
     &__actions {
         display: grid;
-        gap: var(--space-2);
-        inline-size: 100%;
-
-        > * {
-            inline-size: 100%;
-        }
+        gap: var(--Hero-actions-gap);
     }
 
     @include breakpoint.from("sm") {
-        padding-inline: var(--space-8);
+        --Hero-padding-x: var(--space-8);
 
         &__actions {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            inline-size: auto;
-
-            > * {
-                inline-size: auto;
-            }
         }
     }
 

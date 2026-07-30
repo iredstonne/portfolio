@@ -1,20 +1,18 @@
 .NavbarLink {
-  display: block;
-  font-size: clamp(
-    var(--font-size-6),
-    10vw,
-    var(--font-size-8)
-  );
-  color: inherit;
-  cursor: pointer;
+  --NavbarLink-text-underline-color: transparent;
+  --NavbarLink-text-underline-thickness: 2px;
+  --NavbarLink-text-underline-offset: var(--space-1);
+  --NavbarLink-text-underline-transition-duration: 180ms;
+  
   text-decoration-line: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 2px;
   text-decoration-skip-ink: auto;
-  text-underline-offset: var(--space-1);
-  transition: text-decoration-color 180ms;
-
+  text-decoration-color: var(--NavbarLink-text-underline-color);
+  text-decoration-thickness: var(--NavbarLink-text-underline-thickness);
+  text-underline-offset: var(--NavbarLink-text-underline-offset);
+  transition: text-decoration-color var(--NavbarLink-text-underline-transition-duration);
+  cursor: pointer;
+  
   &:is(:hover, :focus-visible) {
-    text-decoration-color: currentColor;
+    --NavbarLink-text-underline-color: currentColor;
   }
 }

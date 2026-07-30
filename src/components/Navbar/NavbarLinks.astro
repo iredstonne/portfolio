@@ -1,4 +1,5 @@
 ---
+import clsx from "clsx"
 import { navbarLinks } from "../../config/navbar-links"
 import NavbarLink from "./NavbarLink.astro"
 import classes from "./NavbarLinks.module.scss"
@@ -10,35 +11,26 @@ const pointsToCurrentPage = (url: URL) =>
   url.origin === Astro.url.origin &&
   normalizePathname(url.pathname) === normalizePathname(Astro.url.pathname)
 
-const resolvedNavbarLinks = navbarLinks.map((navbarLink) => {
-  return {
-    ...navbarLink,
-    resolvedUrl: new URL(navbarLink.href, Astro.url)
-  }
-})
+const resolvedNavbarLinks = navbarLinks.map((navbarLink) => ({
+  ...navbarLink,
+  resolvedUrl: new URL(navbarLink.href, Astro.url)
+}))
 
-const navbarActiveLinkStyles = resolvedNavbarLinks
-  .filter(({ resolvedUrl }) => pointsToCurrentPage(resolvedUrl))
-  .map(({ href, resolvedUrl }) => {
-    const navbarLinkSelector = `.${classes.NavbarLinks} a[href="${href}"]`
-    const hash = resolvedUrl.hash
-    if (hash === "") {
-      return `
-        ${navbarLinkSelector} {
-          text-decoration-color: currentColor;
-        }
-      `
+const navbarSamePageTargetLinkStyles = resolvedNavbarLinks
+  .flatMap(({ resolvedUrl, href }) => {
+    if (pointsToCurrentPage(resolvedUrl)) {
+      const { hash } = resolvedUrl
+      const targetId = decodeURIComponent(hash.slice(1))
+      const targetScope = targetId ? `body:has([id="${targetId}"]:target)` : ''
+      const targetSelector = clsx(targetScope, `.${classes.NavbarLinks}`, `a[href="${href}"]`)
+      return `${targetSelector} { text-decoration-color: currentColor; }`
     }
-    const targetId = decodeURIComponent(hash.slice(1))
-    return `
-      body:has([id="${targetId}"]:target) ${navbarLinkSelector} {
-        text-decoration-color: currentColor;
-      }
-    `
+    return []
   })
   .join("\n")
 
 ---
+
 <div class={classes.NavbarLinks}>
   {resolvedNavbarLinks.map(({ href, label }) => (
     <NavbarLink
@@ -48,6 +40,6 @@ const navbarActiveLinkStyles = resolvedNavbarLinks
   ))}
 </div>
 
-{navbarActiveLinkStyles.length > 0 && (
-  <style is:inline set:html={navbarActiveLinkStyles} />
+{navbarSamePageTargetLinkStyles.length > 0 && (
+  <style is:inline set:html={navbarSamePageTargetLinkStyles} />
 )}

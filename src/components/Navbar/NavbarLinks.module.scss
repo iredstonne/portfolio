@@ -1,8 +1,10 @@
 .NavbarLinks {
+    --NavbarLinks-gap: var(--space-4);
+
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--NavbarLinks-gap);
 }

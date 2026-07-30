@@ -1,85 +1,68 @@
 .LinkButton {
-    --LinkButton-color: inherit;
-    --LinkButton-background: transparent;
-    --LinkButton-background-hover: transparent;
-    --LinkButton-border-color: transparent;
+    --LinkButton-gap: var(--space-2);
+    --LinkButton-padding-x: var(--space-4);
+    --LinkButton-padding-y: var(--space-1);
+    --LinkButton-border-radius: var(--radius-2);
+    --LinkButton-font-size: var(--font-size-8);
+    --LinkButton-font-weight: var(--font-weight-6);
+    --LinkButton-icon-size: 1.5rem;
+    --LinkButton-primary-text-color: var(--neutral-50);
+    --LinkButton-primary-background-color: var(--neutral-600);
+    --LinkButton-primary-background-color-hover: var(--neutral-700);
+    --LinkButton-secondary-text-color: var(--neutral-900);
+    --LinkButton-secondary-background-color: var(--neutral-50);
+    --LinkButton-secondary-background-color-hover: var(--neutral-100);
+    --LinkButton-secondary-border-color: var(--neutral-200);
+    --LinkButton-ghost-color: var(--neutral-900);
+    --LinkButton-ghost-background-color-hover: var(--neutral-50);
+    
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    padding-inline: var(--space-4);
-    padding-block: var(--space-1);
-    border: 1px solid var(--LinkButton-border-color);
-    border-radius: 0.5rem;
-    background-color: var(--LinkButton-background);
-    color: var(--LinkButton-color);
-    font-size: clamp(
-        var(--font-size-6),
-        10vw,
-        var(--font-size-8)
-    );
-    font-weight: 600;
+    gap: var(--LinkButton-gap);
+    padding-inline: var(--LinkButton-padding-x);
+    padding-block: var(--LinkButton-padding-y);
+    border-radius: var(--LinkButton-border-radius);
+    font-size: var(--LinkButton-font-size);
+    font-weight: var(--LinkButton-font-weight);
     text-align: center;
     cursor: pointer;
     overflow: hidden;
-
+    
     & > svg {
-        flex: 0 0 auto;
-        inline-size: clamp(
-            0.75rem,
-            10vw,
-            1.5rem
-        );
-        block-size: clamp(
-            0.75rem,
-            10vw,
-            1.5rem
-        );
+        inline-size: var(--LinkButton-icon-size);
+        block-size: var(--LinkButton-icon-size);
     }
 
+    --LinkButton-variant-text-color: transparent;
+    --LinkButton-variant-background-color: transparent;
+    --LinkButton-variant-background-hover-color: transparent;
+    --LinkButton-variant-border-color: transparent;
+    
     &--primary {
-        --LinkButton-color: light-dark(
-            var(--neutral-50),
-            var(--neutral-950)
-        );
-        --LinkButton-background: light-dark(
-            var(--neutral-600),
-            var(--neutral-200)
-        );
-        --LinkButton-background-hover: light-dark(
-            var(--neutral-700),
-            var(--neutral-300)
-        );
+        --LinkButton-variant-text-color: var(--LinkButton-primary-text-color);
+        --LinkButton-variant-background-color: var(--LinkButton-primary-background-color);
+        --LinkButton-variant-background-color-hover: var(--LinkButton-primary-background-color-hover);
     }
-
+    
     &--secondary {
-        --LinkButton-color: light-dark(
-            var(--neutral-900),
-            var(--neutral-50)
-        );
-        --LinkButton-background: light-dark(
-            var(--neutral-50),
-            var(--neutral-900)
-        );
-        --LinkButton-background-hover: light-dark(
-            var(--neutral-100),
-            var(--neutral-800)
-        );
-        --LinkButton-border-color: light-dark(
-            var(--neutral-200),
-            var(--neutral-700)
-        );
+        --LinkButton-variant-text-color: var(--LinkButton-secondary-text-color);
+        --LinkButton-variant-background-color: var(--LinkButton-secondary-background-color);
+        --LinkButton-variant-background-color-hover: var(--LinkButton-secondary-background-color-hover);
+        --LinkButton-variant-border-color: var(--LinkButton-secondary-border-color);
     }
-
+    
     &--ghost {
-        --LinkButton-color: light-dark(
-            var(--neutral-900),
-            var(--neutral-50)
-        );
-        --LinkButton-background-hover: light-dark(
-            var(--neutral-50),
-            var(--neutral-900)
-        );
+        --LinkButton-variant-text-color: var(--LinkButton-ghost-text-color);
+        --LinkButton-variant-background-color-hover: var(--LinkButton-ghost-background-color-hover);
+    }
+  
+    background-color: var(--LinkButton-variant-background-color);
+    border: 1px solid var(--LinkButton-variant-border-color);
+    color: var(--LinkButton-variant-text-color);
+    
+    &:hover {
+        background-color: var(--LinkButton-variant-background-color-hover);
     }
 }
 
