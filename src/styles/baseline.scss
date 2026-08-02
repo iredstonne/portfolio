@@ -128,10 +128,23 @@ body {
     display: none !important;
 }
 
+.new-page { // Force this block to break to a new page
+    break-before: page;
+}
+
+.page-end { // Force a new page after this block
+    break-after: page;
+}
+
+.keep-together { // Avoid this block breaking between two pages
+    break-inside: avoid;
+}
+
 @include breakpoint.print {
     .print-only {
         display: revert !important;
     }
+
 }
 
 input[type="search" i] {
