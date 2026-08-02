@@ -1,0 +1,28 @@
+@use "../../styles/utilities/breakpoints" as breakpoints;
+
+.ShowcaseGrid {
+    --ShowcaseGrid-column-min-width: 20rem;
+    --ShowcaseGrid-gap: var(--space-4);
+    --ShowcaseGrid-stack-offset: var(--space-2);
+    --ShowcaseGrid-stack-offset-expanded: var(--space-4);
+    --ShowcaseGrid-stack-color: var(--neutral-50);
+    --ShowcaseGrid-stack-border-color: var(--neutral-200);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--ShowcaseGrid-column-min-width)), 1fr)); 
+    gap: var(--ShowcaseGrid-gap);
+
+    &[data-is-truncated="true"] > :last-child {
+        box-shadow:
+            var(--ShowcaseGrid-stack-offset) var(--ShowcaseGrid-stack-offset) 0 var(--ShowcaseGrid-stack-color),
+            var(--ShowcaseGrid-stack-offset) var(--ShowcaseGrid-stack-offset) 0 1px var(--ShowcaseGrid-stack-border-color),
+            var(--ShowcaseGrid-stack-offset-expanded) var(--ShowcaseGrid-stack-offset-expanded) 0 var(--ShowcaseGrid-stack-color),
+            var(--ShowcaseGrid-stack-offset-expanded) var(--ShowcaseGrid-stack-offset-expanded) 0 1px var(--ShowcaseGrid-stack-border-color);
+    }
+
+    @include breakpoints.print {
+        &[data-is-truncated="true"] > :last-child {
+            box-shadow: none;
+        }
+    }
+}
