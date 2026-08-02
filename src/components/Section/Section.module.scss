@@ -1,38 +1,31 @@
+@use "../../styles/utilities/containers";
 @use "../../styles/utilities/breakpoints";
 
 .Section {
-    --Section-gap: var(--space-6);
-    --Section-padding-x: var(--space-8);
-    --Section-padding-y: var(--space-8);
-    --Section-header-gap: var(--space-2);
-    --Section-title-color: var(--primary-500);
-    --Section-title-font-size: var(--font-size-h3);
-    --Section-title-font-weight: var(--font-weight-7);
-    --Section-title-line-height: 1.6;
-    --Section-description-color: var(--neutral-700);
-    --Section-description-font-size: var(--font-size-p);
-    --Section-footer-margin-y: var(--space-4);
-    --Section-link-gap: var(--space-2);
-    --Section-link-color: var(--primary-700);
-    --Section-link-color-hover: var(--primary-800);
-    --Section-link-font-size: var(--font-size-10);
-    --Section-link-font-weight: var(--font-weight-6);
-    --Section-link-icon-nudge-x: var(--space-1);
-    --Section-link-icon-size: 1.5rem;
+    --Section-gap: var(--space-4);
+    --Section-horizontal-padding: var(--space-8);
+    --Section-vertical-padding: var(--space-4);
 
     display: grid;
     gap: var(--Section-gap);
-    @include breakpoints.fluid-container("xl");
-    padding-inline: var(--Section-padding-x);
-    padding-block: var(--Section-padding-y);
+    @include containers.fluid("xl");
+    padding-inline: var(--Section-horizontal-padding);
+    padding-block: var(--Section-vertical-padding);
+
+    --Section-header-gap: var(--space-2);
 
     &__header {
         display: grid;
         gap: var(--Section-header-gap);
     }
 
+    --Section-title-text-color: var(--primary-500);
+    --Section-title-font-size: var(--font-size-2xl);
+    --Section-title-font-weight: var(--font-weight-bold);
+    --Section-title-line-height: var(--line-height-snug);
+
     &__title {
-        color: var(--Section-title-color);
+        color: var(--Section-title-text-color);
         font-size: var(--Section-title-font-size);
         font-weight: var(--Section-title-font-weight);
         line-height: var(--Section-title-line-height);
@@ -40,30 +33,38 @@
         overflow-wrap: break-word;
     }
 
+    --Section-description-text-color: var(--neutral-700);
+    --Section-description-font-size: var(--font-size-lg);
+    --Section-description-line-height: var(--line-height-relaxed);
+
     &__description {
-        color: var(--Section-description-color);
+        color: var(--Section-description-text-color);
         font-size: var(--Section-description-font-size);
         line-height: var(--Section-description-line-height);
         text-wrap: pretty;
         overflow-wrap: break-word;
     }
 
+    --Section-footer-vertical-margin: var(--space-4);
+
     &__footer {
-        margin-block: var(--Section-footer-margin-y);
+        margin-block: var(--Section-footer-vertical-margin);
     }
 
-    @keyframes Section-icon-nudge {
-        0%,
-        100% {
-            transform: translateX(0);
-        }
+    --Section-link-gap: var(--space-2);
+    --Section-link-color: var(--primary-700);
+    --Section-link-hover-color: var(--primary-800);
+    --Section-link-hover-text-underline-color: currentColor;
+    --Section-link-hover-text-underline-thickness: 2px;
+    --Section-link-hover-text-underline-offset: var(--space-1);
+    --Section-link-hover-text-underline-transition-duration: 180ms;
+    --Section-link-font-size: var(--font-size-lg);
+    --Section-link-font-weight: var(--font-weight-semibold);
+    --Section-link-icon-size: 1.5rem;
+    --Section-link-hover-icon-horizontal-nudge: var(--space-1);
 
-        50% {
-            transform: translateX(var(--Section-icon-nudge-x));
-        }
-    }
-    
     &__link {
+        
         display: inline-flex;
         align-items: center;
         gap: var(--Section-link-gap);
@@ -71,20 +72,39 @@
         font-size: var(--Section-link-font-size);
         font-weight: var(--Section-link-font-weight);
         cursor: pointer;
-
+        
+        &:is(:hover, :focus-visible) {
+            text-decoration: underline;           
+            text-decoration-line: underline;
+            text-decoration-color: var(--Section-link-hover-text-underline-color);
+            text-decoration-thickness: var(--Section-link-hover-text-underline-thickness);
+            text-underline-offset: var(--Section-link-hover-text-underline-offset);
+            transition: text-decoration-color var(--Section-link-hover-text-underline-transition-duration);
+            color: var(--Section-link-hover-color);
+        }
+        
         &__icon {
             inline-size: var(--Section-link-icon-size);
             block-size: var(--Section-link-icon-size);
         }
 
-        &:hover, &:focus-visible {
-            text-decoration: underline;
-            color: var(--Section-link-color-hover);
-
-            &__icon {
-                animation: Section-icon-nudge 500ms ease-in-out;
-            }
+        @keyframes Section-link-hover-icon-horizontal-nudge {
+            0%,
+            100% { transform: translateX(0); }
+            50% { transform: translateX(var(--Section-link-hover-icon-horizontal-nudge)); }
         }
+        
+        &:is(:hover, :focus-visible) &__icon {
+            animation: Section-link-hover-icon-horizontal-nudge 500ms ease-in-out;
+        }
+    }
 
+    @include breakpoints.print {
+        break-inside: avoid;
+        page-break-inside: avoid;
+
+        &__footer {
+            display: none;
+        }
     }
 }
