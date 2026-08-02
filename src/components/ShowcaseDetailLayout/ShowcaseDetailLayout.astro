@@ -1,0 +1,70 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import type { ShowcaseCover } from "../../types/showcase"
+import classes from "./ShowcaseDetailLayout.module.scss"
+import { arrowLeftIcon, renderIconDefinitionToHTML } from "../../assets/icons"
+
+type Props = HTMLAttributes<"article"> & {
+    backHref: string
+    backLabel: string
+    title: string
+    summary: string
+    cover?: ShowcaseCover
+    tagsLabel?: string
+    tags?: readonly string[],
+}
+
+const {
+    backHref,
+    backLabel,
+    title,
+    summary,
+    cover,
+    tagsLabel,
+    tags,
+    class: className,
+    ...props
+} = Astro.props
+
+---
+
+<article
+    {...props}
+    class:list={classes.ShowcaseDetailLayout}
+>
+    <a
+        class={classes.ShowcaseDetailLayout__link}
+        href={backHref}
+    >
+        <span class={classes.ShowcaseDetailLayout__icon}>
+            <Fragment set:html={renderIconDefinitionToHTML(arrowLeftIcon)} />
+        </span>
+        {backLabel}
+    </a>
+    <header class={classes.ShowcaseDetailLayout__header}>
+        <figure class={classes.ShowcaseDetailLayout__media}>
+            {cover && (
+                <img
+                    class={classes.ShowcaseDetailLayout__image}
+                    src={cover.src}
+                    alt={cover.alt}
+                    draggable="false"
+                />
+            )}
+        </figure>
+        <div class={classes.ShowcaseDetailLayout__overview}>
+            <h1 class={classes.ShowcaseDetailLayout__title}>{title}</h1>
+            <p class={classes.ShowcaseDetailLayout__summary}>{summary}</p>
+            {tags && tags.length > 0 && (
+                <ul
+                    class={classes.ShowcaseDetailLayout__tags}
+                    aria-label={tagsLabel}
+                >
+                    {tags.map((tag) => (
+                        <li class={classes.ShowcaseDetailLayout__tag}>{tag}</li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    </header>
+</article>

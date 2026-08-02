@@ -1,0 +1,137 @@
+@use "../../styles/utilities/breakpoints";
+
+.ShowcaseDetailLayout {
+    --ShowcaseDetailLayout-gap: var(--space-8);
+    --ShowcaseDetailLayout-padding: var(--space-4);
+
+    display: grid;
+    gap: var(--ShowcaseDetailLayout-gap);
+    width: 100%;
+    padding: var(--ShowcaseDetailLayout-padding);
+
+    --ShowcaseDetailLayout-link-gap: var(--space-2);
+    --ShowcaseDetailLayout-link-color: var(--primary-700);
+    --ShowcaseDetailLayout-link-font-size: var(--font-size-lg);
+    --ShowcaseDetailLayout-link-font-weight: var(--font-weight-semibold);
+    --ShowcaseDetailLayout-link-hover-color: var(--primary-800);
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--ShowcaseDetailLayout-link-gap);
+        color: var(--ShowcaseDetailLayout-link-color);
+        font-size: var(--ShowcaseDetailLayout-link-font-size);
+        font-weight: var(--ShowcaseDetailLayout-link-font-weight);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--ShowcaseDetailLayout-link-hover-color);
+            text-decoration: underline;
+        }
+    }
+
+    --ShowcaseDetailLayout-icon-size: 1em;
+
+    &__icon {
+        width: var(--ShowcaseDetailLayout-icon-size);
+        height: var(--ShowcaseDetailLayout-icon-size);
+    }
+
+    --ShowcaseDetailLayout-header-border-color: var(--neutral-200);
+    --ShowcaseDetailLayout-header-border-radius: var(--radius-2xl);
+
+    &__header {
+        display: grid;
+        grid-template-areas:
+            "media"
+            "overview";
+        border: 1px solid var(--ShowcaseDetailLayout-header-border-color);
+        border-radius: var(--ShowcaseDetailLayout-header-border-radius);
+        overflow: hidden;
+    }
+    
+    &__media {
+        position: relative;
+        grid-area: media;
+        width: 100%;
+        height: 100%;
+    }
+    
+    --ShowcaseDetailLayout-image-aspect-ratio: 16 / 9;
+    --ShowcaseDetailLayout-image-fallback-background-color: var(--neutral-50);
+    
+    &__image {
+        position: relative;
+        display: block;
+        aspect-ratio: var(--ShowcaseDetailLayout-image-aspect-ratio);
+        object-fit: cover;
+
+        &::after {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%; 
+            background-color: var(--ShowcaseDetailLayout-image-fallback-background-color);
+            content: "Couverture indisponible";
+        }
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    --ShowcaseDetailLayout-overview-gap: var(--space-2);
+    --ShowcaseDetailLayout-overview-padding: var(--space-4);
+
+    &__overview {
+        grid-area: overview;
+        display: flex;
+        flex-direction: column;
+        gap: var(--ShowcaseDetailLayout-overview-gap);
+        padding: var(--ShowcaseDetailLayout-overview-padding);
+    }
+
+    --ShowcaseDetailLayout-title-text-color: var(--neutral-950);
+    --ShowcaseDetailLayout-title-font-size: var(--font-size-3xl);
+    --ShowcaseDetailLayout-title-font-weight: var(--font-weight-bold);
+    --ShowcaseDetailLayout-title-line-height: var(--line-height-snug);
+
+    &__title {
+        color: var(--ShowcaseDetailLayout-title-text-color);
+        font-size: var(--ShowcaseDetailLayout-title-font-size);
+        font-weight: var(--ShowcaseDetailLayout-title-font-weight);
+        line-height: var(--ShowcaseDetailLayout-title-line-height);
+        text-wrap: balance;
+        overflow-wrap: break-word;
+    }
+
+    --ShowcaseDetailLayout-summary-text-color: var(--neutral-700);
+    --ShowcaseDetailLayout-summary-font-size: var(--font-size-lg);
+    --ShowcaseDetailLayout-summary-line-height: var(--line-height-relaxed);
+
+    &__summary {
+        color: var(--ShowcaseDetailLayout-summary-text-color);
+        font-size: var(--ShowcaseDetailLayout-summary-font-size);
+        line-height: var(--ShowcaseDetailLayout-summary-line-height);
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+    }
+
+    @include breakpoints.from("md") {
+        &__header {
+            grid-template-areas: "media overview";
+            grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+            grid-template-rows: auto 1fr;
+        }
+    }
+}
