@@ -1,0 +1,25 @@
+@use "./rem-unit";
+
+$radiuses: (
+  none: 0,
+  xs: 2,
+  sm: 4,
+  md: 6,
+  lg: 8,
+  xl: 12,
+  2xl: 16
+);
+
+@function radius($radius-pixels) {
+  @if $radius-pixels == 0 {
+    @return 0;
+  }
+  @return rem-unit.from-pixels($radius-pixels);
+}
+
+@mixin emit-tokens {
+  @each $name, $radius-pixels in $radiuses {
+    --radius-#{$name}: #{radius($radius-pixels)};
+  }
+  --radius-full: calc(infinity * 1px);
+}

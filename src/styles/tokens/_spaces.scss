@@ -1,4 +1,4 @@
-@use "./scale";
+@use "./rem-unit";
 
 $space-unit: 4;
 $space-max: 16;
@@ -7,7 +7,7 @@ $space-max: 16;
     @if $step == 0 {
         @return 0;
     }
-    @return scale.scaled($space-unit * $step);
+    @return rem-unit.from-pixels($space-unit * $step);
 }
 
 @mixin emit-tokens {

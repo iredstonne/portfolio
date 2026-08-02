@@ -1,70 +1,43 @@
-@use "./scale";
+@use "./rem-unit";
 
-$size-unit: 2;
-$size-min: 6;
-$size-max: 20;
+$sizes: (
+  xs: 12,
+  sm: 14,
+  base: 16,
+  lg: 18,
+  xl: 20,
+  2xl: 24,
+  3xl: 30,
+  4xl: 36
+);
 
-$weight-unit: 100;
-$weight-min: 4;
-$weight-max: 7;
+$weights: (
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800
+);
 
-@function size($step) {
-  @if $step == 0 {
+@function size($size-pixels) {
+  @if $size-pixels == 0 {
     @return 0;
   }
-  @return scale.scaled($size-unit * $step);
+  @return rem-unit.from-pixels($size-pixels);
 }
 
-@function weight($step) {
-  @if $step == 0 { 
+@function weight($weight-pixels) {
+  @if $weight-pixels == 0 { 
     @return 0;
   }
-  @return $weight-unit * $step;
+  @return $weight-pixels;
 }
 
 @mixin emit-tokens {
-  @for $step from $size-min through $size-max {
-    --font-size-#{$step}: #{size($step)};
+  @each $name, $size-pixels in $sizes {
+    --font-size-#{$name}: #{size($size-pixels)};
   }
-  @for $step from $weight-min through $weight-max {
-    --font-weight-#{$step}: #{weight($step)};
+  @each $name, $weight-pixels in $weights {
+    --font-weight-#{$name}: #{weight($weight-pixels)};
   }
-
-  --font-size-h1: clamp(
-    var(--font-size-16),
-    4vw,
-    var(--font-size-20)
-  );
-
-  --font-size-h2: clamp(
-    var(--font-size-14),
-    3.5vw,
-    var(--font-size-16)
-  );
-
-  --font-size-h3: clamp(
-    var(--font-size-12),
-    3vw,
-    var(--font-size-14)
-  );
-
-  --font-size-h4: clamp(
-    var(--font-size-11),
-    2.5vw,
-    var(--font-size-12)
-  );
-
-  --font-size-h5: clamp(
-    var(--font-size-10),
-    2vw,
-    var(--font-size-11)
-  );
-
-  --font-size-h6: var(--font-size-10);
-
-  --font-size-p: clamp(
-    var(--font-size-8),
-    1rem + 0.25vw,
-    var(--font-size-9)
-  );
 }

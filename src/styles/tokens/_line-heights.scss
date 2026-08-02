@@ -1,0 +1,13 @@
+$line-heights: (
+  tight: 1.3,
+  snug: 1.4,
+  normal: 1.5,
+  relaxed: 1.6,
+  loose: 2.0
+);
+
+@mixin emit-tokens {
+  @each $name, $value in $line-heights {
+    --line-height-#{$name}: #{$value};
+  }
+}
