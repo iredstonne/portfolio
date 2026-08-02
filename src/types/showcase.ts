@@ -3,3 +3,8 @@ export type ShowcaseCover = {
     src: string
     alt: string
 }
+
+export type ShowcaseDetailListItem = {
+    label: string
+    value?: string
+}
