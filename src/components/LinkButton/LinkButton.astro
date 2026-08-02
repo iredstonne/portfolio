@@ -6,7 +6,7 @@ export type Props = HTMLAttributes<"a"> & {
     variant: "primary" | "secondary" | "ghost"
 }
 
-type AnchorHref = HTMLAttributes<"a">["href"]
+type AnchorHref = Props["href"]
 
 const isExternalHref = (href: AnchorHref) => href && new URL(href, Astro.url).origin !== Astro.url.origin
 
@@ -20,12 +20,8 @@ const {
 ---
 
 <a
-    class:list={[
-        classes.LinkButton,
-        classes[`LinkButton--${variant}`],
-        className
-    ]}
     {...props}
+    class:list={[classes.LinkButton, classes[`LinkButton--${variant}`], className]}
     href={href}
     {...isExternalHref(href) ? { 
         target: "_blank", 

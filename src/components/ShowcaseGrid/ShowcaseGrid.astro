@@ -14,10 +14,6 @@ const {
 
 ---
 
-<div
-  {...props}
-  class={classes.ShowcaseGrid}
-  data-is-truncated={isTruncated}
->
+<div {...props} class:list={[classes.ShowcaseGrid, className]} data-is-truncated={isTruncated}>
   <slot />
 </div>

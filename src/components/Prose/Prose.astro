@@ -11,12 +11,6 @@ const {
 
 ---
 
-<div
-    class:list={[
-        classes.Prose,
-        className,
-    ]}
-    {...props}
->
+<div {...props} class:list={[classes.Prose, className]}>
     <slot />
 </div>

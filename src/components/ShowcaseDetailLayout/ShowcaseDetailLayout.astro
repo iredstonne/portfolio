@@ -28,10 +28,7 @@ const {
 
 ---
 
-<article
-    {...props}
-    class:list={classes.ShowcaseDetailLayout}
->
+<article {...props} class:list={[classes.ShowcaseDetailLayout, className]}>
     <a
         class={classes.ShowcaseDetailLayout__link}
         href={backHref}

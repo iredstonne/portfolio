@@ -26,13 +26,9 @@ const {
 
 ---
 
-<section
-    {...props}
-    id={targetId}
-    class:list={[classes.Section, className]}
->
+<section {...props} class:list={[classes.Section, className]} id={targetId}>
     <header class={classes.Section__header}>
-        <h3 class={classes.Section__title}>{title}</h3>
+        <h2 class={classes.Section__title}>{title}</h2>
         {summary && <p class={classes.Section__description}>{summary}</p>}
     </header>
     <slot />

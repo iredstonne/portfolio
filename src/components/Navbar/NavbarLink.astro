@@ -2,15 +2,13 @@
 import type { NavbarLinkConfig } from "../../types/navbar-link"
 import classes from "./NavbarLink.module.scss"
 
-type Props = NavbarLinkConfig
+
+type Props = NavbarLinkConfig 
 
 const { href, label } = Astro.props
 
 ---
 
-<a
-    href={href}
-    class={classes.NavbarLink}
->
+<a href={href} class={classes.NavbarLink}>
     {label}
 </a>

@@ -4,12 +4,20 @@ import LinkButton from "../LinkButton/LinkButton.astro"
 import classes from "./Hero.module.scss"
 import { heroContent } from "../../config/hero-content"
 import { heroActions } from "../../config/hero-actions"
+import { HTMLAttributes } from "astro/types"
+
+export type Props = HTMLAttributes<"section">
+
+const {
+  class: className,
+  ...props
+} = Astro.props
 
 ---
 
-<section class={classes.Hero}>
+<section {...props} class:list={[classes.Hero, className]}>
     <Prose class={classes.Hero__content}>
-        <h2>{heroContent.title}</h2>
+        <h1>{heroContent.title}</h1>
         <p>{heroContent.description}</p>
         <span class="print-only">{heroContent.contactInstructions}</span>
     </Prose>

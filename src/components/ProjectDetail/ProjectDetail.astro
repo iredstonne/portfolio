@@ -19,10 +19,7 @@ const statusLabels: Record<ProjectStatus, string> = {
 // TODO: Improve tags
 const tags = [
     statusLabels[project.status],
-    ...[
-        project.startedAt, 
-        project.endedAt
-    ].filter(Boolean).join(" - "),
+    [project.startedAt, project.endedAt].filter(Boolean).join(" - "),
     ...project.technologies,
 ].filter(Boolean)
 

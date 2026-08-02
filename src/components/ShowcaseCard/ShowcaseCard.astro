@@ -22,15 +22,13 @@ const {
     tagsLabel,
     tags,
     actionLabel,
+    class: className,
     ...props
 } = Astro.props
 
 ---
 
-<article
-    {...props}  
-    class={classes.ShowcaseCard}
->
+<article {...props} class:list={[classes.ShowcaseCard, className]}>
     {cover && (
         <figure class={classes.ShowcaseCard__media}>
             <img 
@@ -43,7 +41,7 @@ const {
         </figure>
     )}
     <div class={classes.ShowcaseCard__body}>
-        <h4 class={classes.ShowcaseCard__title}>{title}</h4>
+        <h3 class={classes.ShowcaseCard__title}>{title}</h3>
         {summary && <p class={classes.ShowcaseCard__summary}>{summary}</p>}
     </div>
     <div class={classes.ShowcaseCard__footer}>
