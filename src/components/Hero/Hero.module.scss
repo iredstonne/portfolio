@@ -1,37 +1,40 @@
-@use "../../styles/utilities/breakpoints" as breakpoint;
+@use "../../styles/utilities/breakpoints" as breakpoints;
+@use "../../styles/utilities/containers" as containers;
 
 .Hero {
-    --Hero-gap: var(--space-4);
-    --Hero-padding-x: var(--space-4);
-    --Hero-padding-y: var(--space-8);
-    --Hero-actions-gap: var(--space-2);
-
+    --Hero-gap: var(--space-2);
+    --Hero-horizontal-padding: var(--space-2);
+    --Hero-vertical-padding: var(--space-4);
+    
     display: grid;
+    justify-items: center;
     gap: var(--Hero-gap);
-    padding-inline: var(--Hero-padding-x);
-    padding-block: var(--Hero-padding-y);
-
+    @include containers.fluid("xl");
+    padding-inline: var(--Hero-horizontal-padding);
+    padding-block: var(--Hero-vertical-padding);
+    
     &__content {
-        justify-items: center;
         text-align: center;
     }
-
+    
+    --Hero-actions-gap: var(--space-2);
+    
     &__actions {
         display: grid;
         gap: var(--Hero-actions-gap);
+        inline-size: 100%;
     }
 
-    @include breakpoint.from("sm") {
-        --Hero-padding-x: var(--space-8);
-
+    @include breakpoints.from("sm") {
         &__actions {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            inline-size: auto;
         }
     }
 
-    @include breakpoint.print {
+    @include breakpoints.print {
         &__actions {
             display: none;
         }
