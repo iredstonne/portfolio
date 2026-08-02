@@ -100,8 +100,13 @@
     }
 
     @include breakpoints.print {
-        break-inside: avoid;
-        page-break-inside: avoid;
+        &__header {
+            break-after: avoid-page;
+        }
+
+        &__header + * {
+            break-before: avoid-page;
+        }
 
         &__footer {
             display: none;
