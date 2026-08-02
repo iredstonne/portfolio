@@ -1,0 +1,141 @@
+@use "../../styles/utilities/breakpoints";
+
+.ShowcaseCard {
+    --ShowcaseCard-border-color: var(--neutral-100);
+    --ShowcaseCard-border-radius: var(--radius-2xl);
+
+    display: grid;
+    grid-template-areas:
+        "media"
+        "body"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    border: 1px solid var(--ShowcaseCard-border-color);
+    border-radius: var(--ShowcaseCard-border-radius);
+    overflow: hidden;
+
+    &__media {
+        grid-area: media;
+        width: 100%;
+        height: 100%;
+    }
+
+    --ShowcaseCard-media-aspect-ratio: 16 / 9;
+    --ShowcaseCard-media-fallback-background-color: var(--neutral-50);
+
+    &__image {
+        position: relative;
+        display: block;
+        aspect-ratio: var(--ShowcaseCard-media-aspect-ratio);
+        object-fit: cover;
+
+        &::after {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%; 
+            background-color: var(--ShowcaseCard-media-fallback-background-color);
+            content: "Couverture indisponible";
+        }
+    }
+
+    --ShowcaseCard-body-gap: var(--space-2);
+    --ShowcaseCard-body-padding: var(--space-5);
+
+    &__body {
+        grid-area: body;
+        display: flex;
+        flex-direction: column;
+        gap: var(--ShowcaseCard-body-gap);
+        padding: var(--ShowcaseCard-body-padding);
+    }
+
+    --ShowcaseCard-title-text-color: var(--neutral-950);
+    --ShowcaseCard-title-font-size: var(--font-size-lg);
+    --ShowcaseCard-title-font-weight: var(--font-weight-bold);
+    --ShowcaseCard-title-line-height: var(--line-height-snug);
+
+    &__title {
+        color: var(--ShowcaseCard-title-text-color);
+        font-size: var(--ShowcaseCard-title-font-size);
+        font-weight: var(--ShowcaseCard-title-font-weight);
+        line-height: var(--ShowcaseCard-title-line-height);
+        text-wrap: balance;
+        overflow-wrap: break-word;
+    }
+
+    --ShowcaseCard-summary-text-color: var(--neutral-700);
+    --ShowcaseCard-summary-font-size: var(--font-size-base);
+    --ShowcaseCard-summary-line-height: var(--line-height-relaxed);
+
+    &__summary {
+        color: var(--ShowcaseCard-summary-text-color);
+        font-size: var(--ShowcaseCard-summary-font-size);
+        line-height: var(--ShowcaseCard-summary-line-height);
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+    }
+
+    --ShowcaseCard-tags-gap: var(--space-2);
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--ShowcaseCard-tags-gap);
+    }
+
+    --ShowcaseCard-tag-padding-x: var(--space-2);
+    --ShowcaseCard-tag-padding-y: var(--space-1);
+    --ShowcaseCard-tag-border-color: var(--primary-200);
+    --ShowcaseCard-tag-border-radius: var(--radius-2xl);
+    --ShowcaseCard-tag-background-color: var(--primary-100);
+    --ShowcaseCard-tag-text-color: var(--primary-800);
+    --ShowcaseCard-tag-font-size: var(--font-size-xs);
+    --ShowcaseCard-tag-font-weight: var(--font-weight-semibold);
+
+    &__tag {
+        padding-inline: var(--ShowcaseCard-tag-padding-x);
+        padding-block: var(--ShowcaseCard-tag-padding-y);
+        border: 1px solid var(--ShowcaseCard-tag-border-color);
+        border-radius: var(--ShowcaseCard-tag-border-radius);
+        background: var(--ShowcaseCard-tag-background-color);
+        color: var(--ShowcaseCard-tag-text-color);
+        font-size: var(--ShowcaseCard-tag-font-size);
+        font-weight: var(--ShowcaseCard-tag-font-weight);
+    }
+
+    --ShowcaseCard-footer-gap: var(--space-3);
+    --ShowcaseCard-footer-padding: var(--space-5);
+
+    &__footer {
+        grid-area: footer;
+        display: flex;
+        flex-direction: column;
+        gap: var(--ShowcaseCard-footer-gap);
+        padding: var(--ShowcaseCard-footer-padding);
+    }
+
+    @include breakpoints.print {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        grid-template-areas:
+            "media body"
+            "media footer";
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        grid-template-rows: auto 1fr;
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: auto;
+        }
+
+        &__footer > &__action {
+            display: none;
+        }
+    }
+}
