@@ -1,0 +1,42 @@
+.ShowcaseDetailList {
+    --ShowcaseDetailList-column-min-width: 10rem;
+    --ShowcaseDetailList-gap: var(--space-4);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--ShowcaseDetailList-column-min-width)), 1fr));
+    gap: var(--ShowcaseDetailList-gap);
+
+    --ShowcaseDetailList-item-gap: var(--space-1);
+
+    &__item {
+        display: grid;
+        align-content: start;
+        gap: var(--ShowcaseDetailList-item-gap);
+    }
+
+    --ShowcaseDetailList-label-text-color: var(--neutral-600);
+    --ShowcaseDetailList-label-font-size: var(--font-size-sm);
+    --ShowcaseDetailList-label-font-weight: var(--font-weight-semibold);
+    --ShowcaseDetailList-label-line-height: var(--line-height-normal);
+
+    &__label {
+        color: var(--ShowcaseDetailList-label-text-color);
+        font-size: var(--ShowcaseDetailList-label-font-size);
+        font-weight: var(--ShowcaseDetailList-label-font-weight);
+        line-height: var(--ShowcaseDetailList-label-line-height);
+    }
+
+    --ShowcaseDetailList-value-text-color: var(--neutral-950);
+    --ShowcaseDetailList-value-font-size: var(--font-size-base);
+    --ShowcaseDetailList-value-font-weight: var(--font-weight-medium);
+    --ShowcaseDetailList-value-line-height: var(--line-height-normal);
+
+    &__value {
+        color: var(--ShowcaseDetailList-value-text-color);
+        font-size: var(--ShowcaseDetailList-value-font-size);
+        font-weight: var(--ShowcaseDetailList-value-font-weight);
+        line-height: var(--ShowcaseDetailList-value-line-height);
+        font-variant-numeric: tabular-nums;
+        overflow-wrap: break-word;
+    }
+}

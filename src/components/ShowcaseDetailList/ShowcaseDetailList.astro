@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import type { ShowcaseDetailListItem } from "../../types/showcase"
+import classes from "./ShowcaseDetailList.module.scss"
+
+type Props = HTMLAttributes<"dl"> & {
+    items: readonly ShowcaseDetailListItem[]
+}
+
+const {
+    items,
+    class: className,
+    ...props
+} = Astro.props
+
+const visibleItems = items.filter(({ value }) => value?.trim())
+---
+
+{visibleItems.length > 0 && (
+    <dl {...props} class:list={[classes.ShowcaseDetailList, className]}>
+        {visibleItems.map(({ label, value }) => (
+            <div class={classes.ShowcaseDetailList__item}>
+                <dt class={classes.ShowcaseDetailList__label}>{label}</dt>
+                <dd class={classes.ShowcaseDetailList__value}>{value}</dd>
+            </div>
+        ))}
+    </dl>
+)}

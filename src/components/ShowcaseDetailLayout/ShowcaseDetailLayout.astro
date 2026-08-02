@@ -52,6 +52,11 @@ const {
         <div class={classes.ShowcaseDetailLayout__overview}>
             <h1 class={classes.ShowcaseDetailLayout__title}>{title}</h1>
             <p class={classes.ShowcaseDetailLayout__summary}>{summary}</p>
+            {Astro.slots.has("details") && (
+                <div class={classes.ShowcaseDetailLayout__details}>
+                    <slot name="details" />
+                </div>
+            )}
             {tags && tags.length > 0 && (
                 <ul
                     class={classes.ShowcaseDetailLayout__tags}
@@ -64,4 +69,5 @@ const {
             )}
         </div>
     </header>
+    <slot />
 </article>

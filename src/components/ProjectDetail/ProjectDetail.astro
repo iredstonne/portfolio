@@ -1,6 +1,8 @@
 ---
 import type { Project, ProjectStatus } from "../../types/projects"
+import type { ShowcaseDetailListItem } from "../../types/showcase"
 import { site } from "../../config/site"
+import ShowcaseDetailList from "../ShowcaseDetailList/ShowcaseDetailList.astro"
 import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
 
 type Props = {
@@ -16,12 +18,16 @@ const statusLabels: Record<ProjectStatus, string> = {
     "paused": "En pause",
 }
 
-// TODO: Improve tags
-const tags = [
-    statusLabels[project.status],
-    [project.startedAt, project.endedAt].filter(Boolean).join(" - "),
-    ...project.technologies,
-].filter(Boolean)
+const details = [
+    {
+        label: "État",
+        value: statusLabels[project.status],
+    },
+    {
+        label: "Période",
+        value: [project.startedAt, project.endedAt].filter(Boolean).join(" - "),
+    },
+] satisfies readonly ShowcaseDetailListItem[]
 
 ---
 
@@ -31,8 +37,12 @@ const tags = [
     title={project.title}
     summary={project.summary}
     cover={project.cover}
-    tags={tags}
+    tags={project.technologies}
     tagsLabel="Technologies utilisées"
 >
+    <ShowcaseDetailList
+        slot="details"
+        items={details}
+    />
     <slot />
 </ShowcaseDetailLayout>

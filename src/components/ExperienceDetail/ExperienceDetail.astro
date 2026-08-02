@@ -1,6 +1,8 @@
 ---
 import type { Experience } from "../../types/experiences"
+import type { ShowcaseDetailListItem } from "../../types/showcase"
 import { site } from "../../config/site"
+import ShowcaseDetailList from "../ShowcaseDetailList/ShowcaseDetailList.astro"
 import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
 
 type Props = {
@@ -9,11 +11,20 @@ type Props = {
 
 const { experience } = Astro.props
 
-// TODO: Improve tags
-const tags = [
-    experience.organization,
-    experience.location
-].filter(Boolean)
+const details = [
+    {
+        label: "Organisation",
+        value: experience.organization,
+    },
+    {
+        label: "Lieu",
+        value: experience.location,
+    },
+    {
+        label: "Période",
+        value: [experience.startedAt, experience.endedAt].filter(Boolean).join(" - "),
+    },
+] satisfies readonly ShowcaseDetailListItem[]
 
 ---
 
@@ -23,7 +34,10 @@ const tags = [
     title={experience.title}
     summary={experience.summary}
     cover={experience.cover}
-    tags={tags}
 > 
+    <ShowcaseDetailList
+        slot="details"
+        items={details}
+    />
     <slot />
 </ShowcaseDetailLayout>
