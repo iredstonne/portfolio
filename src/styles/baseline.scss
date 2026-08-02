@@ -132,14 +132,6 @@ body {
     break-before: page;
 }
 
-.page-end { // Force a new page after this block
-    break-after: page;
-}
-
-.keep-together { // Avoid this block breaking between two pages
-    break-inside: avoid;
-}
-
 @include breakpoint.print {
     .print-only {
         display: revert !important;

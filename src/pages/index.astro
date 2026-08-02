@@ -9,26 +9,29 @@ import { site } from "../config/site"
 
 <BaseLayout>
     <Hero />
-    <Section 
-        targetId="featured-projects"
-        title="Projets mis en avant"
-        summary="Une sélection de projets représentatifs de mon travail."
-        action={{
-            label: "Découvrir tous les projets",
-            href: `${site.base}/projects`
-        }}
-    >
-        <FeaturedProjects />
-    </Section>
-    <Section 
-        targetId="featured-experiences"
-        title="Experiences mises en avant"
-        summary="Une sélection d'expériences qui ont façonné ma pratique et renforcé mes compétences."
-        action={{
-            label: "Découvrir toutes les expériences",
-            href: `${site.base}/experiences`
-        }}
-    >
-        <FeaturedExperiences />
-    </Section>
+    <div class="new-page">
+        <Section 
+            targetId="featured-projects"
+            title="Projets mis en avant"
+            summary="Une sélection de projets représentatifs de mon travail."
+            class="new-page"
+            action={{
+                label: "Découvrir tous les projets",
+                href: `${site.base}/projects`
+            }}
+        >
+            <FeaturedProjects />
+        </Section>
+        <Section 
+            targetId="featured-experiences"
+            title="Experiences mises en avant"
+            summary="Une sélection d'expériences qui ont façonné ma pratique et renforcé mes compétences."
+            action={{
+                label: "Découvrir toutes les expériences",
+                href: `${site.base}/experiences`
+            }}
+        >
+            <FeaturedExperiences />
+        </Section>
+    </div>
 </BaseLayout>
