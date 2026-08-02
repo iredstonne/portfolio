@@ -20,6 +20,7 @@ const {
     title,
     summary,
     action,
+    class: className,
     ...props
 } = Astro.props
 
@@ -28,10 +29,10 @@ const {
 <section
     {...props}
     id={targetId}
-    class={classes.Section}
+    class:list={[classes.Section, className]}
 >
     <header class={classes.Section__header}>
-        <h2 class={classes.Section__title}>{title}</h2>
+        <h3 class={classes.Section__title}>{title}</h3>
         {summary && <p class={classes.Section__description}>{summary}</p>}
     </header>
     <slot />
@@ -39,7 +40,7 @@ const {
         <footer class={classes.Section__footer}>
             <a href={action.href} class={classes.Section__link}>
                 {action.label}
-                <span class={classes.Section__icon}>
+                <span class={classes.Section__link__icon}>
                     <Fragment set:html={renderIconDefinitionToHTML(arrowRightIcon)} />
                 </span>
             </a>
