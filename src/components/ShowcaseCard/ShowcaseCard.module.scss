@@ -35,6 +35,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 1rem;
             text-align: center;
             width: 100%;
             height: 100%; 
@@ -71,11 +72,13 @@
     --ShowcaseCard-summary-text-color: var(--neutral-700);
     --ShowcaseCard-summary-font-size: var(--font-size-base);
     --ShowcaseCard-summary-line-height: var(--line-height-relaxed);
+    --ShowcaseCard-summary-max-chars-per-line: 70;
 
     &__summary {
         color: var(--ShowcaseCard-summary-text-color);
         font-size: var(--ShowcaseCard-summary-font-size);
         line-height: var(--ShowcaseCard-summary-line-height);
+        max-inline-size: calc(var(--ShowcaseDetailLayout-summary-max-chars-per-line) * 1ch);
         text-wrap: pretty;
         overflow-wrap: break-word;
     }
