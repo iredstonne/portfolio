@@ -1,0 +1,41 @@
+---
+import type { Project, ProjectStatus } from "../../types/projects"
+import { site } from "../../config/site"
+import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
+
+type Props = {
+    project: Project
+}
+
+const { project } = Astro.props
+
+const statusLabels: Record<ProjectStatus, string> = {
+    "planned": "Planifié",
+    "in-progress": "En cours",
+    "completed": "Terminé",
+    "paused": "En pause",
+}
+
+// TODO: Improve tags
+const tags = [
+    statusLabels[project.status],
+    ...[
+        project.startedAt, 
+        project.endedAt
+    ].filter(Boolean).join(" - "),
+    ...project.technologies,
+].filter(Boolean)
+
+---
+
+<ShowcaseDetailLayout
+    backHref={`${site.base}/projects`}
+    backLabel="Tous les projets"
+    title={project.title}
+    summary={project.summary}
+    cover={project.cover}
+    tags={tags}
+    tagsLabel="Technologies utilisées"
+>
+    <slot />
+</ShowcaseDetailLayout>

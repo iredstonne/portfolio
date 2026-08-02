@@ -1,0 +1,29 @@
+---
+import type { Experience } from "../../types/experiences"
+import { site } from "../../config/site"
+import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
+
+type Props = {
+    experience: Experience
+}
+
+const { experience } = Astro.props
+
+// TODO: Improve tags
+const tags = [
+    experience.organization,
+    experience.location
+].filter(Boolean)
+
+---
+
+<ShowcaseDetailLayout
+    backHref={`${site.base}/experiences`}
+    backLabel="Toutes les expériences"
+    title={experience.title}
+    summary={experience.summary}
+    cover={experience.cover}
+    tags={tags}
+> 
+    <slot />
+</ShowcaseDetailLayout>
