@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import classes from "./ShowcaseGrid.module.scss"
+
+export type Props = HTMLAttributes<"div"> & {
+  isTruncated?: boolean
+}
+
+const {
+  isTruncated = false,
+  class: className,
+  ...props
+} = Astro.props
+
+---
+
+<div
+  {...props}
+  class={classes.ShowcaseGrid}
+  data-is-truncated={isTruncated}
+>
+  <slot />
+</div>
