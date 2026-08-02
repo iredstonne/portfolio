@@ -1,0 +1,12 @@
+$pixels-per-rem: 16;
+
+@function from-pixels($pixel-value) {
+  @if $pixel-value == 0 {
+    @return 0;
+  }
+  @return calc(var(--rem-unit) * #{$pixel-value});
+}
+
+@mixin emit-token {
+  --rem-unit: calc(1rem / #{$pixels-per-rem});
+}
