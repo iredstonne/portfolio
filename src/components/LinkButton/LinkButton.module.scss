@@ -1,33 +1,24 @@
 .LinkButton {
     --LinkButton-gap: var(--space-2);
-    --LinkButton-padding-x: var(--space-4);
-    --LinkButton-padding-y: var(--space-1);
-    --LinkButton-border-radius: var(--radius-2);
-    --LinkButton-font-size: var(--font-size-8);
-    --LinkButton-font-weight: var(--font-weight-6);
-    --LinkButton-icon-size: 1.5rem;
-    --LinkButton-primary-text-color: var(--neutral-50);
-    --LinkButton-primary-background-color: var(--neutral-600);
-    --LinkButton-primary-background-color-hover: var(--neutral-700);
-    --LinkButton-secondary-text-color: var(--neutral-900);
-    --LinkButton-secondary-background-color: var(--neutral-50);
-    --LinkButton-secondary-background-color-hover: var(--neutral-100);
-    --LinkButton-secondary-border-color: var(--neutral-200);
-    --LinkButton-ghost-color: var(--neutral-900);
-    --LinkButton-ghost-background-color-hover: var(--neutral-50);
-    
+    --LinkButton-horizontal-padding: var(--space-4);
+    --LinkButton-vertical-padding: var(--space-2);
+    --LinkButton-border-radius: var(--radius-md);
+    --LinkButton-font-size: var(--font-size-base);
+    --LinkButton-font-weight: var(--font-weight-semibold);
+
     display: inline-flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: var(--LinkButton-gap);
-    padding-inline: var(--LinkButton-padding-x);
-    padding-block: var(--LinkButton-padding-y);
+    padding-inline: var(--LinkButton-horizontal-padding);
+    padding-block: var(--LinkButton-vertical-padding);
     border-radius: var(--LinkButton-border-radius);
     font-size: var(--LinkButton-font-size);
     font-weight: var(--LinkButton-font-weight);
-    text-align: center;
     cursor: pointer;
     overflow: hidden;
+    
+    --LinkButton-icon-size: 1.5rem;
     
     & > svg {
         inline-size: var(--LinkButton-icon-size);
@@ -39,30 +30,42 @@
     --LinkButton-variant-background-hover-color: transparent;
     --LinkButton-variant-border-color: transparent;
     
-    &--primary {
-        --LinkButton-variant-text-color: var(--LinkButton-primary-text-color);
-        --LinkButton-variant-background-color: var(--LinkButton-primary-background-color);
-        --LinkButton-variant-background-color-hover: var(--LinkButton-primary-background-color-hover);
-    }
-    
-    &--secondary {
-        --LinkButton-variant-text-color: var(--LinkButton-secondary-text-color);
-        --LinkButton-variant-background-color: var(--LinkButton-secondary-background-color);
-        --LinkButton-variant-background-color-hover: var(--LinkButton-secondary-background-color-hover);
-        --LinkButton-variant-border-color: var(--LinkButton-secondary-border-color);
-    }
-    
-    &--ghost {
-        --LinkButton-variant-text-color: var(--LinkButton-ghost-text-color);
-        --LinkButton-variant-background-color-hover: var(--LinkButton-ghost-background-color-hover);
-    }
-  
     background-color: var(--LinkButton-variant-background-color);
     border: 1px solid var(--LinkButton-variant-border-color);
     color: var(--LinkButton-variant-text-color);
     
     &:hover {
-        background-color: var(--LinkButton-variant-background-color-hover);
+        background-color: var(--LinkButton-variant-background-hover-color);
+    }
+    
+    --LinkButton-primary-text-color: var(--neutral-50);
+    --LinkButton-primary-background-color: var(--neutral-600);
+    --LinkButton-primary-background-hover-color: var(--neutral-700);
+    
+    &--primary {
+        --LinkButton-variant-text-color: var(--LinkButton-primary-text-color);
+        --LinkButton-variant-background-color: var(--LinkButton-primary-background-color);
+        --LinkButton-variant-background-hover-color: var(--LinkButton-primary-background-hover-color);
+    }
+    
+    --LinkButton-secondary-text-color: var(--neutral-900);
+    --LinkButton-secondary-background-color: var(--neutral-50);
+    --LinkButton-secondary-background-hover-color: var(--neutral-100);
+    --LinkButton-secondary-border-color: var(--neutral-200);
+    
+    &--secondary {
+        --LinkButton-variant-text-color: var(--LinkButton-secondary-text-color);
+        --LinkButton-variant-background-color: var(--LinkButton-secondary-background-color);
+        --LinkButton-variant-background-hover-color: var(--LinkButton-secondary-background-hover-color);
+        --LinkButton-variant-border-color: var(--LinkButton-secondary-border-color);
+    }
+    
+    --LinkButton-ghost-text-color: var(--neutral-900);
+    --LinkButton-ghost-background-hover-color: var(--neutral-50);
+    
+    &--ghost {
+        --LinkButton-variant-text-color: var(--LinkButton-ghost-text-color);
+        --LinkButton-variant-background-hover-color: var(--LinkButton-ghost-background-hover-color);
     }
 }
 
