@@ -1,0 +1,68 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { ShowcaseCover } from "../../types/showcase"
+import classes from "./ShowcaseCard.module.scss"
+import LinkButton from "../LinkButton/LinkButton.astro"
+
+export type Props = HTMLAttributes<"article"> & {
+    href: string
+    cover?: ShowcaseCover
+    title: string
+    summary: string
+    tagsLabel?: string
+    tags?: readonly string[],
+    actionLabel: string
+}
+
+const {
+    href,
+    cover,
+    title,
+    summary,
+    tagsLabel,
+    tags,
+    actionLabel,
+    ...props
+} = Astro.props
+
+---
+
+<article
+    {...props}  
+    class={classes.ShowcaseCard}
+>
+    {cover && (
+        <figure class={classes.ShowcaseCard__media}>
+            <img 
+                src={cover.src} 
+                alt={cover.alt}
+                class={classes.ShowcaseCard__image} 
+                draggable="false"
+                loading="lazy"
+            />
+        </figure>
+    )}
+    <div class={classes.ShowcaseCard__body}>
+        <h4 class={classes.ShowcaseCard__title}>{title}</h4>
+        {summary && <p class={classes.ShowcaseCard__summary}>{summary}</p>}
+    </div>
+    <div class={classes.ShowcaseCard__footer}>
+        {tags && tags.length > 0 && (
+            <ul 
+                class={classes.ShowcaseCard__tags} 
+                aria-label={tagsLabel}
+            >
+                {tags.map((tag) => (
+                    <li class={classes.ShowcaseCard__tag}>{tag}</li>
+                ))}
+            </ul>
+        )}
+        <LinkButton
+            href={href}
+            variant="primary"
+            class={classes.ShowcaseCard__action}
+        >
+            {actionLabel}
+        </LinkButton>
+    </div>
+</article>
