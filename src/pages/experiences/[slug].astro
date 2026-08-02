@@ -1,0 +1,23 @@
+---
+import type { Experience } from "../../types/experiences"
+import { experiences } from "../../config/experiences"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import ExperienceDetail from "../../components/ExperienceDetail/ExperienceDetail.astro"
+
+type Props = {
+    experience: Experience
+}
+
+export function getStaticPaths() {
+    return experiences.map((experience) => ({
+        params: { slug: experience.slug },
+        props: { experience }
+    }))
+}
+
+const { experience } = Astro.props
+---
+
+<BaseLayout pageName={`Expérience - ${experience.title}`}>
+    <ExperienceDetail experience={experience} />
+</BaseLayout>
