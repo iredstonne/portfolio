@@ -1,13 +1,15 @@
 @use "./tokens/colors";
-@use "./tokens/scale";
+@use "./tokens/rem-unit";
 @use "./tokens/spaces";
-@use "./tokens/radius";
+@use "./tokens/radiuses";
 @use "./tokens/fonts";
+@use "./tokens/line-heights";
 
 :root {
   @include colors.emit-tokens;
-  @include scale.emit-tokens;
+  @include rem-unit.emit-token;
   @include fonts.emit-tokens;
   @include spaces.emit-tokens;
-  @include radius.emit-tokens;
+  @include radiuses.emit-tokens;
+  @include line-heights.emit-tokens;
 }
