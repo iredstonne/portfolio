@@ -1,0 +1,7 @@
+@use "./breakpoints";
+
+@mixin fluid($max-width) {
+    width: 100%;
+    max-width: breakpoints.get($max-width);
+    margin-inline: auto;
+}
