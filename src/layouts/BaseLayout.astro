@@ -1,27 +1,46 @@
 ---
+import type { JsonLdDocument } from "../types/structured-data"
 import Navbar from "../components/Navbar/Navbar.astro"
-import { site } from "../config/site";
+import SeoHead from "../components/SeoHead/SeoHead.astro"
+import { site } from "../config/site"
 import baselineCss from "../styles/baseline.scss?inline"
-import "../styles/global.scss";
+import "../styles/global.scss"
 
 type Props = {
   pageName?: string
+  description?: string
+  canonicalURL?: URL
+  noRobots?: boolean
+  structuredData?: JsonLdDocument
 }
 
-const { pageName } = Astro.props;
+const {
+  canonicalURL,
+  noRobots = false,
+  pageName,
+  description = site.description,
+  structuredData,
+} = Astro.props
 
 const siteName = site.name
-const documentTitle = pageName
+const title = pageName
   ? `${pageName} • ${siteName}`
   : siteName
+
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={site.language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{documentTitle}</title>
+    <SeoHead
+      canonicalURL={canonicalURL}
+      noRobots={noRobots}
+      title={title}
+      description={description}
+      structuredData={structuredData}
+    />
     <style is:inline set:html={baselineCss} />
   </head>
   <body>

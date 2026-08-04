@@ -1,13 +1,18 @@
-import { SiteConfig } from "../types/site";
+import type { SiteConfig } from "../types/site"
 
 export const site = {
-    base: import.meta.env.BASE_URL,
     name: "Portfolio de Kristofer Gehringer",
-    ownerName: "Kristofer Gehringer",
-    ownerEmail: "kristofer.gehringer@gmail.com",
+    description: "Portfolio de Kristofer Gehringer, développeur web belgo-autrichien.",
+    language: "fr",
+    locale: "fr_BE",
+    authorName: "Kristofer Gehringer",
+    authorEmail: "kristofer.gehringer@gmail.com",
     githubUrl: "https://github.com/iredstonne",
     githubHandle: "@iredstonne",
     linkedinUrl: "https://www.linkedin.com/in",
     linkedinHandle: "Kristofer Gehringer",
     repositoryUrl: "https://github.com/iredstonne/portfolio",
-} as SiteConfig
+} satisfies SiteConfig
+
+export const getBasePath = (): string =>
+    import.meta.env.BASE_URL.replace(/\/+$/, "")

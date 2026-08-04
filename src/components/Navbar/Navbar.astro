@@ -3,6 +3,7 @@ import NavbarLinks from "./NavbarLinks.astro"
 import LinkButton from "../LinkButton/LinkButton.astro"
 import classes from "./Navbar.module.scss"
 import { site } from "../../config/site"
+import { getRoutePath } from "../../config/routes"
 import { availableSocialIconset, navbarSocialLinks } from "../../config/navbar-social-links"
 import { navbarActions } from "../../config/navbar-actions"
 import { renderIconDefinitionToHTML } from "../../assets/icons"
@@ -19,7 +20,7 @@ const {
 
 <nav {...props} class:list={[classes.Navbar, className]}>
     <div class={classes.Navbar__layout}>
-        <a href={site.base} class={classes.Navbar__brand}>{site.name}</a>
+        <a href={getRoutePath("home")} class={classes.Navbar__brand}>{site.name}</a>
         <div class={classes.Navbar__links}>
             <NavbarLinks />
         </div>

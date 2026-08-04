@@ -3,7 +3,7 @@ import { NavbarActionConfig } from "../types/navbar-actions"
 
 export const navbarActions = [
   {
-    href: `mailto:${site.ownerEmail}`,
+    href: `mailto:${site.authorEmail}`,
     variant: "primary",
     label: "Contact",
   }

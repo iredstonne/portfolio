@@ -1,7 +1,7 @@
 ---
 import type { Experience } from "../../types/experiences"
 import type { ShowcaseDetailListItem } from "../../types/showcase"
-import { site } from "../../config/site"
+import { getRoutePath } from "../../config/routes"
 import ShowcaseDetailList from "../ShowcaseDetailList/ShowcaseDetailList.astro"
 import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
 
@@ -29,7 +29,7 @@ const details = [
 ---
 
 <ShowcaseDetailLayout
-    backHref={`${site.base}/experiences`}
+    backHref={getRoutePath("experiences")}
     backLabel="Toutes les expériences"
     title={experience.title}
     summary={experience.summary}

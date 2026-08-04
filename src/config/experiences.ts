@@ -1,4 +1,4 @@
-import { site } from "./site"
+import { getRoutePath } from "./routes"
 import { Experience } from "../types/experiences"
 
 export const experiences = [
@@ -64,4 +64,5 @@ export const experiences = [
     }
 ] as Experience[]
 
-export const getExperienceUrl = (experience: Experience) => `${site.base}/experiences/${experience.slug}`
+export const getExperienceUrl = (experience: Experience) =>
+    `${getRoutePath("experiences")}/${experience.slug}`

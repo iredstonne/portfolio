@@ -1,7 +1,7 @@
 ---
 import type { Project, ProjectStatus } from "../../types/projects"
 import type { ShowcaseDetailListItem } from "../../types/showcase"
-import { site } from "../../config/site"
+import { getRoutePath } from "../../config/routes"
 import ShowcaseDetailList from "../ShowcaseDetailList/ShowcaseDetailList.astro"
 import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
 
@@ -32,7 +32,7 @@ const details = [
 ---
 
 <ShowcaseDetailLayout
-    backHref={`${site.base}/projects`}
+    backHref={getRoutePath("projects")}
     backLabel="Tous les projets"
     title={project.title}
     summary={project.summary}

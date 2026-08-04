@@ -1,17 +1,17 @@
-import { site } from "./site"
+import { getRoutePath, routes } from "./routes"
 import { NavbarLinkConfig } from "../types/navbar-link"
 
 export const navbarLinks = [
   {
-    href: `${site.base}`,
-    label: "Acceuil",
+    href: getRoutePath("home"),
+    label: routes.home.label,
   },
   {
-    href: `${site.base}/projects`,
-    label: "Projets",
+    href: getRoutePath("projects"),
+    label: routes.projects.label,
   },
   {
-    href: `${site.base}/experiences`,
-    label: "Expériences",
+    href: getRoutePath("experiences"),
+    label: routes.experiences.label,
   }
 ] as NavbarLinkConfig[]

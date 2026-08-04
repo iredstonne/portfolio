@@ -1,4 +1,4 @@
-import { site } from "./site"
+import { getRoutePath } from "./routes"
 import { Project } from "../types/projects"
 
 export const projects = [
@@ -74,4 +74,5 @@ export const projects = [
     }
 ] as Project[]
 
-export const getProjectUrl = (project: Project) => `${site.base}/projects/${project.slug}`
+export const getProjectUrl = (project: Project) =>
+    `${getRoutePath("projects")}/${project.slug}`

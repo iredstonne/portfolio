@@ -1,11 +1,13 @@
 export type SiteConfig = {
-    base: string,
-    name: string,
-    ownerName: string,
-    ownerEmail: string,
-    githubUrl: string,
-    githubHandle: string,
-    linkedinUrl: string,
-    linkedinHandle: string,
-    repositoryUrl: string,
+    name: string
+    description: string
+    language: string
+    locale: string
+    authorName: string
+    authorEmail: string
+    githubUrl: string
+    githubHandle: string
+    linkedinUrl: string
+    linkedinHandle: string
+    repositoryUrl: string
 }
