@@ -1,22 +1,33 @@
 ---
-import ShowcaseCard from "../ShowcaseCard/ShowcaseCard.astro"
-import ShowcaseGrid from "../ShowcaseGrid/ShowcaseGrid.astro"
 import { experiences, getExperienceUrl } from "../../config/experiences"
+import { showcaseFeaturedContent } from "../../config/showcase-featured-content"
+import Section from "../Section/Section.astro"
+import ShowcaseGrid from "../ShowcaseGrid/ShowcaseGrid.astro"
+import ShowcaseCard from "../ShowcaseCard/ShowcaseCard.astro"
 
 const featuredExperiences = experiences
   .filter((experience) => experience.featured)
 const isTruncated = featuredExperiences.length < experiences.length
-
 ---
-
-<ShowcaseGrid isTruncated={isTruncated}>
-    {featuredExperiences.map((experience) => (
-      <ShowcaseCard
-        href={getExperienceUrl(experience)}
-        cover={experience.cover}
-        title={experience.title}
-        summary={experience.summary}
-        actionLabel="Voir l'expérience"
-      />
-    ))}
-</ShowcaseGrid>
+<Section
+  targetId={showcaseFeaturedContent.experiences.targetId}
+  title={showcaseFeaturedContent.experiences.title}
+  summary={showcaseFeaturedContent.experiences.summary}
+  action={showcaseFeaturedContent.experiences.moreLink}
+>
+  <ShowcaseGrid isTruncated={isTruncated}>
+      {featuredExperiences.map((experience) => (
+        <ShowcaseCard
+          href={getExperienceUrl(experience)}
+          cover={experience.cover}
+          title={experience.title}
+          summary={experience.summary}
+          tags={experience.tags}
+          action={{
+            ...showcaseFeaturedContent.experiences.action,
+            variant: "primary"
+          }}
+        />
+      ))}
+  </ShowcaseGrid>
+</Section>

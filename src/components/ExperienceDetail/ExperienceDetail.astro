@@ -1,43 +1,31 @@
 ---
 import type { Experience } from "../../types/experiences"
 import type { ShowcaseDetailListItem } from "../../types/showcase"
-import { getRoutePath } from "../../config/routes"
+import { showcaseDetailContent } from "../../config/showcase-detail-content"
 import ShowcaseDetailList from "../ShowcaseDetailList/ShowcaseDetailList.astro"
-import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
+import ShowcaseDetail from "../ShowcaseDetail/ShowcaseDetail.astro"
 
 type Props = {
     experience: Experience
 }
 
 const { experience } = Astro.props
-
-const details = [
-    {
-        label: "Organisation",
-        value: experience.organization,
-    },
-    {
-        label: "Lieu",
-        value: experience.location,
-    },
-    {
-        label: "Période",
-        value: [experience.startedAt, experience.endedAt].filter(Boolean).join(" - "),
-    },
-] satisfies readonly ShowcaseDetailListItem[]
-
+const details = showcaseDetailContent.experiences.details.map(({ label, value }) => ({
+    label,
+    value: value(experience),
+})) satisfies readonly ShowcaseDetailListItem[]
 ---
-
-<ShowcaseDetailLayout
-    backHref={getRoutePath("experiences")}
-    backLabel="Toutes les expériences"
+<ShowcaseDetail
+    backHref={showcaseDetailContent.experiences.backLink.href}
+    backLabel={showcaseDetailContent.experiences.backLink.label}
     title={experience.title}
     summary={experience.summary}
     cover={experience.cover}
+    tags={experience.tags}
 > 
     <ShowcaseDetailList
         slot="details"
         items={details}
     />
     <slot />
-</ShowcaseDetailLayout>
+</ShowcaseDetail>

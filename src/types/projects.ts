@@ -1,10 +1,13 @@
 import { ShowcaseCover } from "../types/showcase"
 
-export type ProjectStatus =
-    | "planned"
-    | "in-progress"
-    | "completed"
-    | "paused"
+export const projectStatuses = [
+    "planned",
+    "in-progress",
+    "completed",
+    "paused",
+] as const
+
+export type ProjectStatus = typeof projectStatuses[number]
 
 export type Project = {
   slug: string
@@ -14,6 +17,6 @@ export type Project = {
   startedAt: string
   endedAt: string
   status: ProjectStatus
-  technologies: readonly string[]
+  tags: readonly string[]
   featured: boolean
 }

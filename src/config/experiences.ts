@@ -12,6 +12,8 @@ export const experiences = [
         summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis aspernatur optio quaerat delectus? Perspiciatis laboriosam possimus corporis deleniti repellat earum velit repellendus porro aperiam, autem maxime, architecto reprehenderit atque cupiditate!",
         startedAt: "",
         endedAt: "",
+        organization: "",
+        location: "",
         featured: true
     },
     {
@@ -24,6 +26,9 @@ export const experiences = [
         summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis aspernatur optio quaerat delectus? Perspiciatis laboriosam possimus corporis deleniti repellat earum velit repellendus porro aperiam, autem maxime, architecto reprehenderit atque cupiditate!",
         startedAt: "",
         endedAt: "",
+        tags: [],
+        organization: "",
+        location: "",
         featured: true
     },
     {
@@ -36,6 +41,9 @@ export const experiences = [
         summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis aspernatur optio quaerat delectus? Perspiciatis laboriosam possimus corporis deleniti repellat earum velit repellendus porro aperiam, autem maxime, architecto reprehenderit atque cupiditate!",
         startedAt: "",
         endedAt: "",
+        tags: [],
+        organization: "",
+        location: "",
         featured: true
     },
     {
@@ -48,6 +56,9 @@ export const experiences = [
         summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis aspernatur optio quaerat delectus? Perspiciatis laboriosam possimus corporis deleniti repellat earum velit repellendus porro aperiam, autem maxime, architecto reprehenderit atque cupiditate!",
         startedAt: "",
         endedAt: "",
+        tags: [],
+        organization: "",
+        location: "",
         featured: true
     },
     {
@@ -60,6 +71,9 @@ export const experiences = [
         summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis aspernatur optio quaerat delectus? Perspiciatis laboriosam possimus corporis deleniti repellat earum velit repellendus porro aperiam, autem maxime, architecto reprehenderit atque cupiditate!",
         startedAt: "",
         endedAt: "",
+        tags: [],
+        organization: "",
+        location: "",
         featured: false
     }
 ] as Experience[]

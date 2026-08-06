@@ -1,23 +1,30 @@
-import { getBasePath } from "./site"
+export const basePath = import.meta.env.BASE_URL.replace(/\/+$/, "")
 
-export const routes = {
+const createRoutePath = (segment = ""): string => {
+    return segment ? `${basePath}/${segment}` : segment;
+}
+
+const routes = {
     home: {
         label: "Accueil",
-        segment: "",
+        path: createRoutePath(),
     },
     projects: {
         label: "Projets",
-        segment: "projects",
+        path: createRoutePath("projects"),
     },
     experiences: {
         label: "Expériences",
-        segment: "experiences",
+        path: createRoutePath("experiences"),
     },
 } as const
 
 export type RouteName = keyof typeof routes
 
+export const getRouteLabel = (routeName: RouteName): string => {
+    return routes[routeName].label
+}
+
 export const getRoutePath = (routeName: RouteName): string => {
-    const { segment } = routes[routeName]
-    return segment ? `${getBasePath()}/${segment}` : getBasePath()
+    return routes[routeName].path
 }

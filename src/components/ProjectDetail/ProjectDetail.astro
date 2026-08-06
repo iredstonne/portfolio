@@ -1,48 +1,31 @@
 ---
-import type { Project, ProjectStatus } from "../../types/projects"
+import type { Project } from "../../types/projects"
 import type { ShowcaseDetailListItem } from "../../types/showcase"
-import { getRoutePath } from "../../config/routes"
+import { showcaseDetailContent } from "../../config/showcase-detail-content"
 import ShowcaseDetailList from "../ShowcaseDetailList/ShowcaseDetailList.astro"
-import ShowcaseDetailLayout from "../ShowcaseDetailLayout/ShowcaseDetailLayout.astro"
+import ShowcaseDetail from "../ShowcaseDetail/ShowcaseDetail.astro"
 
 type Props = {
     project: Project
 }
 
 const { project } = Astro.props
-
-const statusLabels: Record<ProjectStatus, string> = {
-    "planned": "Planifié",
-    "in-progress": "En cours",
-    "completed": "Terminé",
-    "paused": "En pause",
-}
-
-const details = [
-    {
-        label: "État",
-        value: statusLabels[project.status],
-    },
-    {
-        label: "Période",
-        value: [project.startedAt, project.endedAt].filter(Boolean).join(" - "),
-    },
-] satisfies readonly ShowcaseDetailListItem[]
-
+const details = showcaseDetailContent.projects.details.map(({ label, value }) => ({
+    label,
+    value: value(project),
+})) satisfies readonly ShowcaseDetailListItem[]
 ---
-
-<ShowcaseDetailLayout
-    backHref={getRoutePath("projects")}
-    backLabel="Tous les projets"
+<ShowcaseDetail
+    backHref={showcaseDetailContent.projects.backLink.href}
+    backLabel={showcaseDetailContent.projects.backLink.label}
     title={project.title}
     summary={project.summary}
     cover={project.cover}
-    tags={project.technologies}
-    tagsLabel="Technologies utilisées"
+    tags={project.tags}
 >
     <ShowcaseDetailList
         slot="details"
         items={details}
     />
     <slot />
-</ShowcaseDetailLayout>
+</ShowcaseDetail>

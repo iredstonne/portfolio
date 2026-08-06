@@ -78,7 +78,7 @@
         color: var(--ShowcaseCard-summary-text-color);
         font-size: var(--ShowcaseCard-summary-font-size);
         line-height: var(--ShowcaseCard-summary-line-height);
-        max-inline-size: calc(var(--ShowcaseDetailLayout-summary-max-chars-per-line) * 1ch);
+        max-inline-size: calc(var(--ShowcaseCard-summary-max-chars-per-line) * 1ch);
         text-wrap: pretty;
         overflow-wrap: break-word;
     }

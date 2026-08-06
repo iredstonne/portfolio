@@ -1,5 +1,5 @@
-import { getRoutePath } from "./routes"
 import { Project } from "../types/projects"
+import { getRoutePath } from "./routes"
 
 export const projects = [
     {
@@ -13,7 +13,7 @@ export const projects = [
         startedAt: "",
         endedAt: "",
         status: "completed",
-        technologies: ["Vanilla"],
+        tags: ["Vanilla"],
         featured: true
     },
     {
@@ -27,7 +27,7 @@ export const projects = [
         startedAt: "",
         endedAt: "",
         status: "completed",
-        technologies: ["Vanilla"],
+        tags: ["Vanilla"],
         featured: true
     },
     {
@@ -41,7 +41,7 @@ export const projects = [
         startedAt: "",
         endedAt: "",
         status: "completed",
-        technologies: ["Vanilla"],
+        tags: ["Vanilla"],
         featured: true
     },
     {
@@ -55,7 +55,7 @@ export const projects = [
         startedAt: "",
         endedAt: "",
         status: "completed",
-        technologies: ["Vanilla"],
+        tags: ["Vanilla"],
         featured: true
     },
     {
@@ -69,7 +69,7 @@ export const projects = [
         startedAt: "",
         endedAt: "",
         status: "completed",
-        technologies: ["Vanilla"],
+        tags: ["Vanilla"],
         featured: false
     }
 ] as Project[]

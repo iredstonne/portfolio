@@ -2,8 +2,10 @@
 import type { HTMLAttributes } from "astro/types"
 import classes from "./LinkButton.module.scss"
 
+export type LinkButtonVariant = "primary" | "secondary" | "ghost"
+
 export type Props = HTMLAttributes<"a"> & {
-    variant: "primary" | "secondary" | "ghost"
+    variant: LinkButtonVariant
 }
 
 type AnchorHref = Props["href"]
@@ -16,9 +18,7 @@ const {
     class: className,
     ...props
 } = Astro.props
-
 ---
-
 <a
     {...props}
     class:list={[classes.LinkButton, classes[`LinkButton--${variant}`], className]}

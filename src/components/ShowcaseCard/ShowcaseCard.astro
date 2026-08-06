@@ -1,17 +1,19 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { ShowcaseCover } from "../../types/showcase"
+import LinkButton, { LinkButtonVariant } from "../LinkButton/LinkButton.astro"
 import classes from "./ShowcaseCard.module.scss"
-import LinkButton from "../LinkButton/LinkButton.astro"
 
 export type Props = HTMLAttributes<"article"> & {
     href: string
     cover?: ShowcaseCover
     title: string
     summary: string
-    tagsLabel?: string
-    tags?: readonly string[],
-    actionLabel: string
+    tags?: readonly string[]
+    action: {
+        variant: LinkButtonVariant,
+        label: string
+    }
 }
 
 const {
@@ -19,15 +21,12 @@ const {
     cover,
     title,
     summary,
-    tagsLabel,
     tags,
-    actionLabel,
+    action,
     class: className,
     ...props
 } = Astro.props
-
 ---
-
 <article {...props} class:list={[classes.ShowcaseCard, className]}>
     {cover && (
         <figure class={classes.ShowcaseCard__media}>
@@ -46,10 +45,7 @@ const {
     </div>
     <div class={classes.ShowcaseCard__footer}>
         {tags && tags.length > 0 && (
-            <ul 
-                class={classes.ShowcaseCard__tags} 
-                aria-label={tagsLabel}
-            >
+            <ul class={classes.ShowcaseCard__tags} aria-label="Tags">
                 {tags.map((tag) => (
                     <li class={classes.ShowcaseCard__tag}>{tag}</li>
                 ))}
@@ -57,10 +53,10 @@ const {
         )}
         <LinkButton
             href={href}
-            variant="primary"
+            variant={action.variant}
             class={classes.ShowcaseCard__action}
         >
-            {actionLabel}
+            {action.label}
         </LinkButton>
     </div>
 </article>

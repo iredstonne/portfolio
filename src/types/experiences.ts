@@ -7,6 +7,7 @@ export type Experience = {
   summary: string
   startedAt: string
   endedAt: string
+  tags: readonly string[]
   organization: string
   location: string
   featured: boolean

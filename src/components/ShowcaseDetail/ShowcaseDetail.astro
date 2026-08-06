@@ -1,8 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import type { ShowcaseCover } from "../../types/showcase"
-import classes from "./ShowcaseDetailLayout.module.scss"
 import { arrowLeftIcon, renderIconDefinitionToHTML } from "../../assets/icons"
+import classes from "./ShowcaseDetail.module.scss"
 
 type Props = HTMLAttributes<"article"> & {
     backHref: string
@@ -10,8 +10,7 @@ type Props = HTMLAttributes<"article"> & {
     title: string
     summary: string
     cover?: ShowcaseCover
-    tagsLabel?: string
-    tags?: readonly string[],
+    tags?: readonly string[]
 }
 
 const {
@@ -20,50 +19,45 @@ const {
     title,
     summary,
     cover,
-    tagsLabel,
     tags,
     class: className,
     ...props
 } = Astro.props
-
 ---
-
-<article {...props} class:list={[classes.ShowcaseDetailLayout, className]}>
+<article {...props} class:list={[classes.ShowcaseDetail, className]}>
     <a
-        class={classes.ShowcaseDetailLayout__link}
+        class={classes.ShowcaseDetail__link}
         href={backHref}
     >
-        <span class={classes.ShowcaseDetailLayout__icon}>
+        <span class={classes.ShowcaseDetail__icon}>
             <Fragment set:html={renderIconDefinitionToHTML(arrowLeftIcon)} />
         </span>
         {backLabel}
     </a>
-    <header class={classes.ShowcaseDetailLayout__header}>
-        <figure class={classes.ShowcaseDetailLayout__media}>
+    <header class={classes.ShowcaseDetail__header}>
+        <figure class={classes.ShowcaseDetail__media}>
             {cover && (
                 <img
-                    class={classes.ShowcaseDetailLayout__image}
+                    class={classes.ShowcaseDetail__image}
                     src={cover.src}
                     alt={cover.alt}
                     draggable="false"
+                    loading="eager"
                 />
             )}
         </figure>
-        <div class={classes.ShowcaseDetailLayout__overview}>
-            <h1 class={classes.ShowcaseDetailLayout__title}>{title}</h1>
-            <p class={classes.ShowcaseDetailLayout__summary}>{summary}</p>
+        <div class={classes.ShowcaseDetail__overview}>
+            <h1 class={classes.ShowcaseDetail__title}>{title}</h1>
+            <p class={classes.ShowcaseDetail__summary}>{summary}</p>
             {Astro.slots.has("details") && (
-                <div class={classes.ShowcaseDetailLayout__details}>
+                <div class={classes.ShowcaseDetail__details}>
                     <slot name="details" />
                 </div>
             )}
             {tags && tags.length > 0 && (
-                <ul
-                    class={classes.ShowcaseDetailLayout__tags}
-                    aria-label={tagsLabel}
-                >
+                <ul class={classes.ShowcaseDetail__tags}>
                     {tags.map((tag) => (
-                        <li class={classes.ShowcaseDetailLayout__tag}>{tag}</li>
+                        <li class={classes.ShowcaseDetail__tag}>{tag}</li>
                     ))}
                 </ul>
             )}
