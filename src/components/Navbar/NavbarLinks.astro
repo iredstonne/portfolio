@@ -1,9 +1,9 @@
 ---
+import { HTMLAttributes } from "astro/types"
 import clsx from "clsx"
 import { navbarLinks } from "../../config/navbar-links"
 import NavbarLink from "./NavbarLink.astro"
 import classes from "./NavbarLinks.module.scss"
-import { HTMLAttributes } from "astro/types"
 
 const normalizePathname = (pathname: string) =>
   pathname.replace(/\/+$/, "") || "/"
@@ -36,9 +36,7 @@ const {
   class: className,
   ...props
 } = Astro.props
-
 ---
-
 <div {...props} class:list={[classes.NavbarLinks, className]}>
   {resolvedNavbarLinks.map(({ href, label }) => (
     <NavbarLink

@@ -23,9 +23,7 @@ const {
     class: className,
     ...props
 } = Astro.props
-
 ---
-
 <section {...props} class:list={[classes.Section, className]} id={targetId}>
     <header class={classes.Section__header}>
         <h1 class={classes.Section__title}>{title}</h1>

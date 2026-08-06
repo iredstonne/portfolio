@@ -15,7 +15,6 @@ const {
 
 const visibleItems = items.filter(({ value }) => value?.trim())
 ---
-
 {visibleItems.length > 0 && (
     <dl {...props} class:list={[classes.ShowcaseDetailList, className]}>
         {visibleItems.map(({ label, value }) => (

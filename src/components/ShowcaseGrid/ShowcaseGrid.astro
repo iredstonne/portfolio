@@ -11,9 +11,7 @@ const {
   class: className,
   ...props
 } = Astro.props
-
 ---
-
 <div {...props} class:list={[classes.ShowcaseGrid, className]} data-is-truncated={isTruncated}>
   <slot />
 </div>

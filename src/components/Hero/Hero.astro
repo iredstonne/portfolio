@@ -1,10 +1,10 @@
 ---
+import { HTMLAttributes } from "astro/types"
+import { heroContent } from "../../config/hero-content"
+import { heroActions } from "../../config/hero-actions"
 import Prose from "../Prose/Prose.astro"
 import LinkButton from "../LinkButton/LinkButton.astro"
 import classes from "./Hero.module.scss"
-import { heroContent } from "../../config/hero-content"
-import { heroActions } from "../../config/hero-actions"
-import { HTMLAttributes } from "astro/types"
 
 export type Props = HTMLAttributes<"section">
 
@@ -12,9 +12,7 @@ const {
   class: className,
   ...props
 } = Astro.props
-
 ---
-
 <section {...props} class:list={[classes.Hero, className]}>
     <Prose class={classes.Hero__content}>
         <h1>{heroContent.title}</h1>

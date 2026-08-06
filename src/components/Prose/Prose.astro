@@ -8,9 +8,7 @@ const {
     class: className,
     ...props
 } = Astro.props
-
 ---
-
 <div {...props} class:list={[classes.Prose, className]}>
     <slot />
 </div>
