@@ -1,0 +1,46 @@
+---
+import type { JsonLdDocument } from "../../types/structured-data"
+import { site } from "../../config/site"
+
+type Props = {
+    title: string
+    description?: string
+    canonicalURL?: URL
+    noRobots?: boolean
+    structuredData?: JsonLdDocument
+}
+
+const {
+    title,
+    description,
+    canonicalURL,
+    noRobots = false,
+    structuredData,
+} = Astro.props
+---
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content={site.authorName} />
+{canonicalURL && <link rel="canonical" href={canonicalURL.href} />}
+{noRobots && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" /> 
+<meta property="og:locale" content={site.locale} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{canonicalURL && <meta property="og:url" content={canonicalURL.href} />}
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{structuredData && (
+    <script
+        is:inline
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+    />
+)}

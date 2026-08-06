@@ -13,6 +13,3 @@ export const site = {
     linkedinHandle: "Kristofer Gehringer",
     repositoryUrl: "https://github.com/iredstonne/portfolio",
 } satisfies SiteConfig
-
-export const getBasePath = (): string =>
-    import.meta.env.BASE_URL.replace(/\/+$/, "")

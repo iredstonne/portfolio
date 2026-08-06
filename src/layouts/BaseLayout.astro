@@ -1,7 +1,7 @@
 ---
 import type { JsonLdDocument } from "../types/structured-data"
 import Navbar from "../components/Navbar/Navbar.astro"
-import SeoHead from "../components/SeoHead/SeoHead.astro"
+import DocumentMetadata from "../components/DocumentMetadata/DocumentMetadata.astro"
 import { site } from "../config/site"
 import baselineCss from "../styles/baseline.scss?inline"
 import "../styles/global.scss"
@@ -26,15 +26,11 @@ const siteName = site.name
 const title = pageName
   ? `${pageName} • ${siteName}`
   : siteName
-
 ---
-
 <!doctype html>
 <html lang={site.language}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <SeoHead
+    <DocumentMetadata
       canonicalURL={canonicalURL}
       noRobots={noRobots}
       title={title}
