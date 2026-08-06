@@ -3,8 +3,6 @@ import sitemap from "@astrojs/sitemap"
 import browserslist from "browserslist"
 import { browserslistToTargets } from "lightningcss"
 
-import mdx from "@astrojs/mdx";
-
 const browserslistConfig = browserslist([
     'baseline widely available',
     'not dead',
@@ -17,7 +15,7 @@ export default defineConfig({
   site: "https://iredstonne.github.io",
   base: "/portfolio",
   compressHTML: true,
-  integrations: [mdx(), sitemap()],
+  integrations: [sitemap()],
   vite: {
     css: {
       transformer: "lightningcss",
