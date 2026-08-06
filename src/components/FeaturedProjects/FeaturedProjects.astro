@@ -13,7 +13,7 @@ const isTruncated = featuredProjects.length < projects.length
     targetId={showcaseFeaturedContent.projects.targetId}
     title={showcaseFeaturedContent.projects.title}
     summary={showcaseFeaturedContent.projects.summary}
-    action={showcaseFeaturedContent.projects.moreLink}
+    moreLink={showcaseFeaturedContent.projects.moreLink}
 >
     <ShowcaseGrid isTruncated={isTruncated}>
         {featuredProjects.map((project) => (

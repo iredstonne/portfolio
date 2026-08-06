@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "astro/types"
 import classes from "./Section.module.scss"
 import { arrowRightIcon, renderIconDefinitionToHTML } from "../../assets/icons"
 
-type SectionAction = {
+type SectionMoreLink = {
     label: string
     href: string
 }
@@ -12,14 +12,14 @@ type Props = HTMLAttributes<"section"> & {
     targetId: string
     title: string
     summary?: string
-    action?: SectionAction
+    moreLink?: SectionMoreLink
 }
 
 const {
     targetId,
     title,
     summary,
-    action,
+    moreLink,
     class: className,
     ...props
 } = Astro.props
@@ -30,10 +30,10 @@ const {
         {summary && <p class={classes.Section__description}>{summary}</p>}
     </header>
     <slot />
-    {action && (
+    {moreLink && (
         <footer class={classes.Section__footer}>
-            <a href={action.href} class={classes.Section__link}>
-                {action.label}
+            <a href={moreLink.href} class={classes.Section__link}>
+                {moreLink.label}
                 <span class={classes.Section__link__icon}>
                     <Fragment set:html={renderIconDefinitionToHTML(arrowRightIcon)} />
                 </span>
