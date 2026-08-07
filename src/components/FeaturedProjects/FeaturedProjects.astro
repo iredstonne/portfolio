@@ -1,5 +1,6 @@
 ---
 import { projects, getProjectUrl } from "../../config/projects"
+import { showcaseCardContent } from "../../config/showcase-card-content"
 import { showcaseFeaturedContent } from "../../config/showcase-featured-content"
 import Section from "../Section/Section.astro"
 import ShowcaseGrid from "../ShowcaseGrid/ShowcaseGrid.astro"
@@ -24,7 +25,7 @@ const isTruncated = featuredProjects.length < projects.length
             summary={project.summary}
             tags={project.tags}
             action={{
-              ...showcaseFeaturedContent.projects.action,
+              ...showcaseCardContent.projects.action,
               variant: "primary"
             }}
           />

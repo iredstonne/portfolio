@@ -1,5 +1,6 @@
 ---
 import { experiences, getExperienceUrl } from "../../config/experiences"
+import { showcaseCardContent } from "../../config/showcase-card-content"
 import { showcaseFeaturedContent } from "../../config/showcase-featured-content"
 import Section from "../Section/Section.astro"
 import ShowcaseGrid from "../ShowcaseGrid/ShowcaseGrid.astro"
@@ -24,7 +25,7 @@ const isTruncated = featuredExperiences.length < experiences.length
           summary={experience.summary}
           tags={experience.tags}
           action={{
-            ...showcaseFeaturedContent.experiences.action,
+            ...showcaseCardContent.experiences.action,
             variant: "primary"
           }}
         />
