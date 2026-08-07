@@ -7,7 +7,7 @@
 
 :root {
   @include colors.emit-tokens;
-  @include rem-unit.emit-token;
+  @include rem-unit.emit-tokens;
   @include fonts.emit-tokens;
   @include spaces.emit-tokens;
   @include radiuses.emit-tokens;

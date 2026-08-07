@@ -7,6 +7,6 @@ $pixels-per-rem: 16;
   @return calc(var(--rem-unit) * #{$pixel-value});
 }
 
-@mixin emit-token {
+@mixin emit-tokens {
   --rem-unit: calc(1rem / #{$pixels-per-rem});
 }
