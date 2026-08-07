@@ -16,6 +16,9 @@ export default defineConfig({
   base: "/portfolio",
   compressHTML: true,
   integrations: [sitemap()],
+  build: {
+    assets: "_assets",
+  },
   vite: {
     css: {
       transformer: "lightningcss",
@@ -25,4 +28,3 @@ export default defineConfig({
     }
   }
 })
-
