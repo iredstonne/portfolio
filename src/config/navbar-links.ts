@@ -1,17 +1,17 @@
-import { getRouteLabel, getRoutePath } from "./routes"
-import { NavbarLinkConfig } from "../types/navbar-link"
+import { getRoutePath } from "./routes"
+import type { NavbarLinkConfig } from "../types/navbar-link"
 
 export const navbarLinks = [
-  {
-    href: getRoutePath("home"),
-    label: getRouteLabel("home"),
-  },
-  {
-    href: getRoutePath("projects"),
-    label: getRouteLabel("projects"),
-  },
-  {
-    href: getRoutePath("experiences"),
-    label: getRouteLabel("experiences")
-  }
-] as NavbarLinkConfig[]
+    {
+        href: getRoutePath("home"),
+        label: "Accueil",
+    },
+    {
+        href: getRoutePath("projects"),
+        label: "Projets",
+    },
+    {
+        href: getRoutePath("experiences"),
+        label: "Expériences",
+    },
+] satisfies NavbarLinkConfig[]
