@@ -17,8 +17,10 @@ export function getStaticPaths() {
 
 const { project } = Astro.props
 ---
-
-<BaseLayout pageName={`Projet - ${project.title}`}>
+<BaseLayout
+    canonicalURL={new URL(Astro.url.pathname, Astro.site)}
+    pageName={project.title}
+    description={project.summary}
+>
     <ProjectDetail project={project} />
 </BaseLayout>
-

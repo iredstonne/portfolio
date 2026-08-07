@@ -1,37 +1,41 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Hero from "../components/Hero/Hero.astro"
 import FeaturedExperiences from "../components/FeaturedExperiences/FeaturedExperiences.astro"
 import FeaturedProjects from "../components/FeaturedProjects/FeaturedProjects.astro"
-import Hero from "../components/Hero/Hero.astro"
-import Section from "../components/Section/Section.astro"
-import BaseLayout from "../layouts/BaseLayout.astro"
-import { site } from "../config/site"
+import {
+    personStructuredData,
+    site,
+    websiteStructuredData,
+} from "../config/site"
+import {
+    createProfilePage,
+    defineStructuredData,
+} from "../lib/structured-data"
+
+const description = site.description
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const structuredData = defineStructuredData(createProfilePage({
+    url: canonicalURL,
+    name: site.name,
+    description: site.description,
+    inLanguage: site.language,
+    isPartOf: websiteStructuredData,
+    mainEntity: personStructuredData,
+}))
 ---
 
-<BaseLayout>
+<BaseLayout
+    canonicalURL={canonicalURL}
+    description={description}
+    structuredData={structuredData}
+>
     <Hero />
     <div class="new-page">
-        <Section 
-            targetId="featured-projects"
-            title="Projets mis en avant"
-            summary="Une sélection de projets représentatifs de mon travail."
-            class="new-page"
-            action={{
-                label: "Découvrir tous les projets",
-                href: `${site.base}/projects`
-            }}
-        >
-            <FeaturedProjects />
-        </Section>
-        <Section 
-            targetId="featured-experiences"
-            title="Experiences mises en avant"
-            summary="Une sélection d'expériences qui ont façonné ma pratique et renforcé mes compétences."
-            action={{
-                label: "Découvrir toutes les expériences",
-                href: `${site.base}/experiences`
-            }}
-        >
-            <FeaturedExperiences />
-        </Section>
+        <FeaturedProjects />
+    </div>
+    <div class="new-page">
+        <FeaturedExperiences />
     </div>
 </BaseLayout>
