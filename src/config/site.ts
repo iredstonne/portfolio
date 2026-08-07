@@ -31,8 +31,8 @@ const createSiteURL = (): URL => {
 
 export const siteURL = createSiteURL()
 
-export const createSitePath = (segment = ""): string => {
-    return new URL(segment, siteURL).pathname
+export const createSitePath = (path = ""): string => {
+    return new URL(path, siteURL).pathname
 }
 
 export const websiteStructuredData = createWebSite({
