@@ -12,7 +12,7 @@ type ShowcaseFeaturedContent = {
 
 export const showcaseFeaturedContent = {
     projects: {
-        targetId: "featured-projects",
+        targetId: "projects",
         title: "Projets mis en avant",
         summary: "Une sélection de projets représentatifs de mon travail.",
         moreLink: {
@@ -21,7 +21,7 @@ export const showcaseFeaturedContent = {
         },
     } satisfies ShowcaseFeaturedContent,
     experiences: {
-        targetId: "featured-experiences",
+        targetId: "experiences",
         title: "Expériences mises en avant",
         summary: "Une sélection d'expériences qui ont façonné ma pratique et renforcé mes compétences.",
         moreLink: {
