@@ -1,27 +1,17 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"
-import ShowcaseCard from "../../components/ShowcaseCard/ShowcaseCard.astro"
-import ShowcaseGrid from "../../components/ShowcaseGrid/ShowcaseGrid.astro"
-import Section from "../../components/Section/Section.astro"
 import { experiences, getExperienceUrl } from "../../config/experiences"
-
+import { showcaseCardContent } from "../../config/showcase-card-content"
+import { showcaseCollectionContent } from "../../config/showcase-collection-content"
+import ShowcaseCollectionLayout from "../../layouts/ShowcaseCollectionLayout.astro"
 ---
-
-<BaseLayout pageName="Expériences">
-    <Section 
-        targetId="experiences"
-        title="Expériences"
-    >
-        <ShowcaseGrid>
-            {experiences.map((project) => (
-                <ShowcaseCard
-                    href={getExperienceUrl(project)}
-                    cover={project.cover}
-                    title={project.title}
-                    summary={project.summary}
-                    actionLabel="Voir l'expérience"
-                />
-            ))}
-        </ShowcaseGrid>
-    </Section>
-</BaseLayout>
+<ShowcaseCollectionLayout
+    {...showcaseCollectionContent.experiences}
+    cardAction={showcaseCardContent.experiences.action}
+    items={experiences.map((experience) => ({
+        item: new URL(getExperienceUrl(experience), Astro.site).href,
+        name: experience.title,
+        cover: experience.cover,
+        summary: experience.summary,
+        tags: experience.tags,
+    }))}
+/>

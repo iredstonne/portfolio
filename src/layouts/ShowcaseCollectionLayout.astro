@@ -1,0 +1,93 @@
+---
+import type { ShowcaseCover } from "../types/showcase"
+import {
+    site,
+    siteURL,
+    websiteStructuredData,
+} from "../config/site"
+import { createBreadcrumbItems } from "../lib/breadcrumb"
+import { createBreadcrumbList, createCollectionPage, createItemList, defineStructuredData } from "../lib/structured-data"
+import BaseLayout from "./BaseLayout.astro"
+import Section from "../components/Section/Section.astro"
+import Prose from "../components/Prose/Prose.astro"
+import ShowcaseGrid from "../components/ShowcaseGrid/ShowcaseGrid.astro"
+import ShowcaseCard from "../components/ShowcaseCard/ShowcaseCard.astro"
+
+type ShowcaseCollectionItem = {
+    item: string
+    name: string
+    cover?: ShowcaseCover
+    summary: string
+    tags?: readonly string[]
+}
+
+type Props = {
+    title: string
+    summary: string
+    targetId: string
+    items: readonly ShowcaseCollectionItem[]
+    emptyMessage: string
+    cardAction: {
+        label: string
+    }
+}
+
+const {
+    title,
+    summary,
+    targetId,
+    items,
+    emptyMessage,
+    cardAction,
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+const structuredData = defineStructuredData(createCollectionPage({
+    url: canonicalURL,
+    name: title,
+    description: summary,
+    inLanguage: site.language,
+    isPartOf: websiteStructuredData,
+    breadcrumb: createBreadcrumbList({
+        items: createBreadcrumbItems(canonicalURL, siteURL),
+    }),
+    mainEntity: createItemList({ 
+        items
+    }),
+}))
+---
+<BaseLayout
+    canonicalURL={canonicalURL}
+    pageName={title}
+    description={summary}
+    structuredData={structuredData}
+>
+    <Section
+        targetId={targetId}
+        title={title}
+        summary={summary}
+    >
+        {items.length > 0 ? (
+            <ShowcaseGrid>
+                {items.map((item) => (
+                    <ShowcaseCard
+                        href={item.item}
+                        cover={item.cover}
+                        title={item.name}
+                        summary={item.summary}
+                        tags={item.tags}
+                        action={{
+                            ...cardAction,
+                            variant: "primary",
+                        }}
+                    />
+                ))}
+            </ShowcaseGrid>
+        ) : (
+            <Prose>
+                <p>{emptyMessage}</p>
+            </Prose>
+        )}
+    </Section>
+</BaseLayout>
