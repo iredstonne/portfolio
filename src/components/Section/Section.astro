@@ -9,15 +9,15 @@ type SectionMoreLink = {
 }
 
 type Props = HTMLAttributes<"section"> & {
-    targetId: string
     title: string
+    targetId?: string
     summary?: string
     moreLink?: SectionMoreLink
 }
 
 const {
-    targetId,
     title,
+    targetId,
     summary,
     moreLink,
     class: className,

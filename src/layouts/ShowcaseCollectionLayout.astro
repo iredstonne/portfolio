@@ -1,9 +1,14 @@
 ---
 import type { ShowcaseCover } from "../types/showcase"
-import { site, siteURL, websiteStructuredData } from "../config/site"
+import {
+    site,
+    siteURL,
+    websiteStructuredData,
+} from "../config/site"
 import { createBreadcrumbItems } from "../lib/breadcrumb"
 import { createBreadcrumbList, createCollectionPage, createItemList, defineStructuredData } from "../lib/structured-data"
 import BaseLayout from "./BaseLayout.astro"
+import Section from "../components/Section/Section.astro"
 import Prose from "../components/Prose/Prose.astro"
 import ShowcaseGrid from "../components/ShowcaseGrid/ShowcaseGrid.astro"
 import ShowcaseCard from "../components/ShowcaseCard/ShowcaseCard.astro"
@@ -56,25 +61,30 @@ const structuredData = defineStructuredData(createCollectionPage({
     description={summary}
     structuredData={structuredData}
 >
-    {items.length > 0 ? (
-        <ShowcaseGrid>
-            {items.map((item) => (
-                <ShowcaseCard
-                    href={item.item}
-                    cover={item.cover}
-                    title={item.name}
-                    summary={item.summary}
-                    tags={item.tags}
-                    action={{
-                        ...cardAction,
-                        variant: "primary",
-                    }}
-                />
-            ))}
-        </ShowcaseGrid>
-    ) : (
-        <Prose>
-            <p>{emptyMessage}</p>
-        </Prose>
-    )}
+    <Section
+        title={title}
+        summary={summary}
+    >
+        {items.length > 0 ? (
+            <ShowcaseGrid>
+                {items.map((item) => (
+                    <ShowcaseCard
+                        href={item.item}
+                        cover={item.cover}
+                        title={item.name}
+                        summary={item.summary}
+                        tags={item.tags}
+                        action={{
+                            ...cardAction,
+                            variant: "primary",
+                        }}
+                    />
+                ))}
+            </ShowcaseGrid>
+        ) : (
+            <Prose>
+                <p>{emptyMessage}</p>
+            </Prose>
+        )}
+    </Section>
 </BaseLayout>
